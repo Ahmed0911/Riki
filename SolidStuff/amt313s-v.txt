@@ -1,0 +1,13 @@
+﻿"Symbol";"Value";"Unit";
+"TraceParts.PartNumber";"10-25022016-063092";"";
+"REFERENCE";"AMT313S-V";"";
+"TraceParts.PartTitle";"AMT31-V Kit - 28 mm, 48 ~ 4096 PPR, Commutation, Capacitive Modular Encoder Kit";"";
+"TraceParts.InstanceId";"10-25022016-06309293ECNNT7Y9F2YB4T2MF5M8KF4";"";
+"DESIGN";"28 mm, 48 ~ 4096 PPR, Commutation, TTL Voltage Output, Axial Orientation, Capacitive Modular Encoder Kit";"";
+"TraceParts.PartStatus";"Published";"";
+"TraceParts.PartStatusId";"";"";
+"SUPPLIER";"CUI";"";
+"TraceParts.PartVersion";"1.0.1";"";
+"TRACEPARTS";"TRACEPARTS";"";
+"TraceParts.PartLanguage";"en";"";
+"TraceParts.ClassPath";"CUI:10-25022016-063092";"";
