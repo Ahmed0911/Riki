@@ -248,14 +248,14 @@ void main(void)
 		HopeRSSI = hopeRF.ReadRSSI();
 		// Hope RX Stuff
 		int hopeReceived = hopeRF.Read(HopeRFbuffer);
-		if( hopeReceived > 0)
-		{
-			// TODO: Add additional check to avoid crash on invalid RF packet!!!
-			if( (HopeRFbuffer[0] == 0x80) && ((hopeReceived-1) == sizeof(SCommGotoExecute)) ) // allow goto/abort command only
-			{
-				ProcessCommand(HopeRFbuffer[0], &HopeRFbuffer[1], hopeReceived-1);
-			}
-		}
+//		if( hopeReceived > 0) // DO NOT USE HOPERF
+//		{
+//			// TODO: Add additional check to avoid crash on invalid RF packet!!!
+//			if( (HopeRFbuffer[0] == 0x80) && ((hopeReceived-1) == sizeof(SCommGotoExecute)) ) // allow goto/abort command only
+//			{
+//				ProcessCommand(HopeRFbuffer[0], &HopeRFbuffer[1], hopeReceived-1);
+//			}
+//		}
 
 		// set inputs
 		ctrl.Ctrl_U.RPY[0] = imu.Roll;
@@ -443,7 +443,7 @@ void SendPeriodicDataEth(void)
 		dataRF.HopeRXRSSI = hopeRF.PacketRSSI;
 		dataRF.HopeTXRSSI = 0; // will be filled on GW station
 
-		hopeRF.Write((BYTE*)&dataRF, sizeof(dataRF));
+		//hopeRF.Write((BYTE*)&dataRF, sizeof(dataRF)); // DO NOT USE HOPERF!
 	}
 }
 
