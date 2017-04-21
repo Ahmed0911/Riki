@@ -448,7 +448,7 @@ void SendPeriodicDataEth(void)
 
 		// throw debug stuff
 		char dataToOutput[100];
-		sprintf(dataToOutput, "Time: %d, SatNR: %d, HorAcc: %0.3f m, RSSI: %d\n", data.LoopCounter, data.NumSV, data.HorizontalAccuracy/1000.0f, data.HopeRSSI);
+		sprintf(dataToOutput, "Time: %d, SatNR: %d, HorAcc: %0.3f m, RSSI: %d\r\n", data.LoopCounter, data.NumSV, data.HorizontalAccuracy/1000.0f, data.HopeRSSI);
 		serialU2.Write((BYTE*)dataToOutput, strlen(dataToOutput));
 	}
 }
