@@ -3,6 +3,7 @@
  */
 #include <stdint.h>
 #include <stdbool.h>
+#include <stdio.h>
 #include "inc/hw_memmap.h"
 #include "inc/hw_types.h"
 #include "driverlib/gpio.h"
@@ -145,7 +146,7 @@ void main(void)
 	pwmDrv.SetWidthUS(1, 1000); // Set zero PWMs
 	pwmDrv.SetWidthUS(2, 1000); // Set zero PWMs
 	pwmDrv.SetWidthUS(3, 1000);	// Set zero PWMs
-	serialU2.Init(UART2_BASE, 9600); // GPS
+	serialU2.Init(UART2_BASE, 115200); // GPS port used as Debug Output Port!!!
 	serialU3.Init(UART3_BASE, 100000); // SBUS
 	serialU5.Init(UART5_BASE, 9600); // Ext. Comm, Ext. GPS
 	sbusRecv.Init();
@@ -444,6 +445,11 @@ void SendPeriodicDataEth(void)
 		dataRF.HopeTXRSSI = 0; // will be filled on GW station
 
 		//hopeRF.Write((BYTE*)&dataRF, sizeof(dataRF)); // DO NOT USE HOPERF!
+
+		// throw debug stuff
+		char dataToOutput[100];
+		sprintf(dataToOutput, "Time: %d, SatNR: %d, HorAcc: %0.3f m, RSSI: %d\n", data.LoopCounter, data.NumSV, data.HorizontalAccuracy/1000.0f, data.HopeRSSI);
+		serialU2.Write((BYTE*)dataToOutput, strlen(dataToOutput));
 	}
 }
 
