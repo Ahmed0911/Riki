@@ -154,13 +154,6 @@ namespace WinEthApp
         public uint CodeTimer;
     };
 
-    struct SCommTrackerCommands
-    {
-        public int Mode; // 0 - disabed, 1 - manual (pan/tilt [CNT]), 2 - semi auto, 3 - auto
-        public int PanRef;
-        public int TiltRef;
-    };
-
     class Comm
     {
         public static byte[] GetBytes(object str)

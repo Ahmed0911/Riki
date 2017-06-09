@@ -31,7 +31,6 @@ namespace WinEthApp
 
         // Log File
         FileStream logStream = null;
-        StreamWriter sw = null;
 
         public MainSystem(FormMain form)
         {
@@ -116,7 +115,6 @@ namespace WinEthApp
 
             // GUI update
             formMain.DisplaySystemData(ReceivedPacketsCounter, MainSystemData);
-            formMain.DisplayTuningData();
 
             // Update assist now
             byte[] toSend = assistNow.Update(MainSystemData.AssistNextChunkToSend);

@@ -57,8 +57,6 @@
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="Gateway.cs" />
-    <Compile Include="GimbaledTracker.cs" />
     <Compile Include="LLConverter.cs" />
     <Compile Include="Navigation.cs" />
     <Compile Include="Program.cs" />
