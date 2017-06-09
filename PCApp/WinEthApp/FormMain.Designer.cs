@@ -211,8 +211,13 @@
             this.label54 = new System.Windows.Forms.Label();
             this.buttonObsGoHome = new System.Windows.Forms.Button();
             this.label55 = new System.Windows.Forms.Label();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.comboBoxObsAltitude = new System.Windows.Forms.ComboBox();
             this.pictureBoxMapObs = new System.Windows.Forms.PictureBox();
+            this.buttonObsSetTarget = new System.Windows.Forms.Button();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.textBoxObsTargetLong = new System.Windows.Forms.TextBox();
+            this.textBoxObsTargetLat = new System.Windows.Forms.TextBox();
             this.tabPageNavigation.SuspendLayout();
             this.groupBox9.SuspendLayout();
             this.groupBox8.SuspendLayout();
@@ -2028,6 +2033,11 @@
             // 
             // tabPageObserver
             // 
+            this.tabPageObserver.Controls.Add(this.label14);
+            this.tabPageObserver.Controls.Add(this.label15);
+            this.tabPageObserver.Controls.Add(this.textBoxObsTargetLong);
+            this.tabPageObserver.Controls.Add(this.textBoxObsTargetLat);
+            this.tabPageObserver.Controls.Add(this.buttonObsSetTarget);
             this.tabPageObserver.Controls.Add(this.label12);
             this.tabPageObserver.Controls.Add(this.comboBoxNavSelector);
             this.tabPageObserver.Controls.Add(this.textBoxObsBatteryPercent);
@@ -2038,7 +2048,7 @@
             this.tabPageObserver.Controls.Add(this.label54);
             this.tabPageObserver.Controls.Add(this.buttonObsGoHome);
             this.tabPageObserver.Controls.Add(this.label55);
-            this.tabPageObserver.Controls.Add(this.comboBox3);
+            this.tabPageObserver.Controls.Add(this.comboBoxObsAltitude);
             this.tabPageObserver.Controls.Add(this.pictureBoxMapObs);
             this.tabPageObserver.Location = new System.Drawing.Point(4, 29);
             this.tabPageObserver.Name = "tabPageObserver";
@@ -2131,30 +2141,30 @@
             // 
             // buttonObsGoHome
             // 
-            this.buttonObsGoHome.Location = new System.Drawing.Point(1284, 823);
+            this.buttonObsGoHome.Location = new System.Drawing.Point(1432, 861);
             this.buttonObsGoHome.Margin = new System.Windows.Forms.Padding(4);
             this.buttonObsGoHome.Name = "buttonObsGoHome";
             this.buttonObsGoHome.Size = new System.Drawing.Size(118, 45);
             this.buttonObsGoHome.TabIndex = 67;
             this.buttonObsGoHome.Text = "Go Home";
             this.buttonObsGoHome.UseVisualStyleBackColor = true;
+            this.buttonObsGoHome.Click += new System.EventHandler(this.buttonObsGoHome_Click);
             // 
             // label55
             // 
             this.label55.AutoSize = true;
-            this.label55.Location = new System.Drawing.Point(1254, 722);
+            this.label55.Location = new System.Drawing.Point(1239, 873);
             this.label55.Name = "label55";
             this.label55.Size = new System.Drawing.Size(67, 20);
             this.label55.TabIndex = 66;
             this.label55.Text = "Altitude:";
             // 
-            // comboBox3
+            // comboBoxObsAltitude
             // 
-            this.comboBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Items.AddRange(new object[] {
-            "0",
-            "2",
+            this.comboBoxObsAltitude.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxObsAltitude.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxObsAltitude.FormattingEnabled = true;
+            this.comboBoxObsAltitude.Items.AddRange(new object[] {
             "5",
             "10",
             "20",
@@ -2163,11 +2173,10 @@
             "200",
             "500",
             "1000"});
-            this.comboBox3.Location = new System.Drawing.Point(1344, 712);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(84, 37);
-            this.comboBox3.TabIndex = 65;
-            this.comboBox3.Text = "10";
+            this.comboBoxObsAltitude.Location = new System.Drawing.Point(1312, 863);
+            this.comboBoxObsAltitude.Name = "comboBoxObsAltitude";
+            this.comboBoxObsAltitude.Size = new System.Drawing.Size(101, 37);
+            this.comboBoxObsAltitude.TabIndex = 65;
             // 
             // pictureBoxMapObs
             // 
@@ -2176,6 +2185,57 @@
             this.pictureBoxMapObs.Size = new System.Drawing.Size(1200, 900);
             this.pictureBoxMapObs.TabIndex = 64;
             this.pictureBoxMapObs.TabStop = false;
+            // 
+            // buttonObsSetTarget
+            // 
+            this.buttonObsSetTarget.Location = new System.Drawing.Point(1345, 727);
+            this.buttonObsSetTarget.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonObsSetTarget.Name = "buttonObsSetTarget";
+            this.buttonObsSetTarget.Size = new System.Drawing.Size(118, 45);
+            this.buttonObsSetTarget.TabIndex = 82;
+            this.buttonObsSetTarget.Text = "Set Target";
+            this.buttonObsSetTarget.UseVisualStyleBackColor = true;
+            this.buttonObsSetTarget.Click += new System.EventHandler(this.buttonObsSetTarget_Click);
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(1292, 816);
+            this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(134, 20);
+            this.label14.TabIndex = 86;
+            this.label14.Text = "Target Longitude:";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(1305, 783);
+            this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(121, 20);
+            this.label15.TabIndex = 85;
+            this.label15.Text = "Target Latitude:";
+            // 
+            // textBoxObsTargetLong
+            // 
+            this.textBoxObsTargetLong.Location = new System.Drawing.Point(1434, 813);
+            this.textBoxObsTargetLong.Margin = new System.Windows.Forms.Padding(4);
+            this.textBoxObsTargetLong.Name = "textBoxObsTargetLong";
+            this.textBoxObsTargetLong.ReadOnly = true;
+            this.textBoxObsTargetLong.Size = new System.Drawing.Size(116, 26);
+            this.textBoxObsTargetLong.TabIndex = 83;
+            this.textBoxObsTargetLong.Text = "15.88388";
+            // 
+            // textBoxObsTargetLat
+            // 
+            this.textBoxObsTargetLat.Location = new System.Drawing.Point(1434, 780);
+            this.textBoxObsTargetLat.Margin = new System.Windows.Forms.Padding(4);
+            this.textBoxObsTargetLat.Name = "textBoxObsTargetLat";
+            this.textBoxObsTargetLat.ReadOnly = true;
+            this.textBoxObsTargetLat.Size = new System.Drawing.Size(116, 26);
+            this.textBoxObsTargetLat.TabIndex = 84;
+            this.textBoxObsTargetLat.Text = "45.80349";
             // 
             // FormMain
             // 
@@ -2397,8 +2457,13 @@
         private System.Windows.Forms.Label label54;
         private System.Windows.Forms.Button buttonObsGoHome;
         private System.Windows.Forms.Label label55;
-        public System.Windows.Forms.ComboBox comboBox3;
         public System.Windows.Forms.PictureBox pictureBoxMapObs;
+        public System.Windows.Forms.ComboBox comboBoxObsAltitude;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.TextBox textBoxObsTargetLong;
+        private System.Windows.Forms.TextBox textBoxObsTargetLat;
+        private System.Windows.Forms.Button buttonObsSetTarget;
     }
 }
 

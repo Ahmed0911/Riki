@@ -34,8 +34,11 @@ namespace WinEthApp
 
         // Current position
         SWaypoint CurrentPosition;
-        
-        // Target
+
+        // Target To Watch
+        SWaypoint TargetWaypoint2;
+
+        // Observer Target
         SWaypoint TargetWaypoint;
 
         // Double buffering
@@ -45,7 +48,7 @@ namespace WinEthApp
         public Observer(FormMain formMain, MainSystem mainSystem)
         {
             this.formMain = formMain;
-            this.mainSystem = mainSystem;
+            this.mainSystem = mainSystem;            
 
             // Create DB objects
             DBcurrentContext = BufferedGraphicsManager.Current;
@@ -169,7 +172,7 @@ namespace WinEthApp
         public void GoHome()
         {
             float Altitude;
-            if (float.TryParse(formMain.comboBoxAltitude.Text, out Altitude) == false)
+            if (float.TryParse(formMain.comboBoxObsAltitude.Text, out Altitude) == false)
             {
                 Altitude = 10; //default
             }
@@ -179,6 +182,11 @@ namespace WinEthApp
             TargetWaypoint.Longitude = HomeLongitude;
             // send target
             Goto(TargetWaypoint);        
+        }
+
+        public void SetTarget()
+        {
+            throw new NotImplementedException();
         }
 
         private void Goto(SWaypoint targetWaypoint)
@@ -266,6 +274,6 @@ namespace WinEthApp
 	        double distance = R * c;
 
 	        return distance;
-        }        
+        }
     }
 }

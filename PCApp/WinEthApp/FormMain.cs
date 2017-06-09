@@ -36,7 +36,9 @@ namespace WinEthApp
             navigation = new Navigation(this, mainSystem);
             observer = new Observer(this, mainSystem);
             comboBoxMapSelector.SelectedIndex = comboBoxMapSelector.Items.Count - 1; // Load default map            
-            comboBoxNavSelector.SelectedIndex = comboBoxNavSelector.Items.Count - 1; // Load default map            
+            comboBoxNavSelector.SelectedIndex = comboBoxNavSelector.Items.Count - 1; // Load default map    
+
+            comboBoxObsAltitude.SelectedIndex = 2;
             // Fill Default Params
             labelParam1.Text = "AltRateBias";
             labelParam2.Text = "AltRateKp";
@@ -201,7 +203,8 @@ namespace WinEthApp
 
             textBoxdRollFiltered.Text = FilteredRoll.ToString("0.000 °/s");
             textBoxdPitchFiltered.Text = FilteredPitch.ToString("0.000 °/s");
-            textBoxdYawFiltered.Text = FilteredYaw.ToString("0.000 °/s");
+            textBoxdYawFiltered.Text = FilteredYaw.ToString("0.000 °" +
+                "/s");
 
             // System
             textBoxSystemEthFrames.Text = ReceivedPacketsCounter.ToString();
@@ -326,6 +329,17 @@ namespace WinEthApp
         private void comboBoxNavSelector_SelectedIndexChanged(object sender, EventArgs e)
         {
             observer.LoadMap(comboBoxNavSelector.SelectedItem.ToString());
+        }
+
+        // Observer Class
+        private void buttonObsGoHome_Click(object sender, EventArgs e)
+        {
+            observer.GoHome();
+        }
+
+        private void buttonObsSetTarget_Click(object sender, EventArgs e)
+        {
+            observer.SetTarget();
         }
     }
 }
