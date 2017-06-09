@@ -200,6 +200,19 @@
             this.textBoxParam1 = new System.Windows.Forms.TextBox();
             this.labelParam1 = new System.Windows.Forms.Label();
             this.tabControlMain = new System.Windows.Forms.TabControl();
+            this.tabPageObserver = new System.Windows.Forms.TabPage();
+            this.label12 = new System.Windows.Forms.Label();
+            this.comboBoxNavSelector = new System.Windows.Forms.ComboBox();
+            this.textBoxObsBatteryPercent = new System.Windows.Forms.TextBox();
+            this.textBoxObsMode = new System.Windows.Forms.TextBox();
+            this.textBoxObsLocSatNr = new System.Windows.Forms.TextBox();
+            this.label47 = new System.Windows.Forms.Label();
+            this.label53 = new System.Windows.Forms.Label();
+            this.label54 = new System.Windows.Forms.Label();
+            this.buttonObsGoHome = new System.Windows.Forms.Button();
+            this.label55 = new System.Windows.Forms.Label();
+            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.pictureBoxMapObs = new System.Windows.Forms.PictureBox();
             this.tabPageNavigation.SuspendLayout();
             this.groupBox9.SuspendLayout();
             this.groupBox8.SuspendLayout();
@@ -211,6 +224,8 @@
             this.groupBox2.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.tabControlMain.SuspendLayout();
+            this.tabPageObserver.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMapObs)).BeginInit();
             this.SuspendLayout();
             // 
             // timerCommUpdate
@@ -2003,12 +2018,164 @@
             // tabControlMain
             // 
             this.tabControlMain.Controls.Add(this.tabPageMainSystem);
+            this.tabControlMain.Controls.Add(this.tabPageObserver);
             this.tabControlMain.Controls.Add(this.tabPageNavigation);
             this.tabControlMain.Location = new System.Drawing.Point(2, 3);
             this.tabControlMain.Name = "tabControlMain";
             this.tabControlMain.SelectedIndex = 0;
             this.tabControlMain.Size = new System.Drawing.Size(1575, 1054);
             this.tabControlMain.TabIndex = 41;
+            // 
+            // tabPageObserver
+            // 
+            this.tabPageObserver.Controls.Add(this.label12);
+            this.tabPageObserver.Controls.Add(this.comboBoxNavSelector);
+            this.tabPageObserver.Controls.Add(this.textBoxObsBatteryPercent);
+            this.tabPageObserver.Controls.Add(this.textBoxObsMode);
+            this.tabPageObserver.Controls.Add(this.textBoxObsLocSatNr);
+            this.tabPageObserver.Controls.Add(this.label47);
+            this.tabPageObserver.Controls.Add(this.label53);
+            this.tabPageObserver.Controls.Add(this.label54);
+            this.tabPageObserver.Controls.Add(this.buttonObsGoHome);
+            this.tabPageObserver.Controls.Add(this.label55);
+            this.tabPageObserver.Controls.Add(this.comboBox3);
+            this.tabPageObserver.Controls.Add(this.pictureBoxMapObs);
+            this.tabPageObserver.Location = new System.Drawing.Point(4, 29);
+            this.tabPageObserver.Name = "tabPageObserver";
+            this.tabPageObserver.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageObserver.Size = new System.Drawing.Size(1567, 1021);
+            this.tabPageObserver.TabIndex = 2;
+            this.tabPageObserver.Text = "Observer";
+            this.tabPageObserver.UseVisualStyleBackColor = true;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(236, 908);
+            this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(44, 20);
+            this.label12.TabIndex = 81;
+            this.label12.Text = "Map:";
+            // 
+            // comboBoxNavSelector
+            // 
+            this.comboBoxNavSelector.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxNavSelector.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxNavSelector.FormattingEnabled = true;
+            this.comboBoxNavSelector.ItemHeight = 29;
+            this.comboBoxNavSelector.Location = new System.Drawing.Point(241, 939);
+            this.comboBoxNavSelector.Name = "comboBoxNavSelector";
+            this.comboBoxNavSelector.Size = new System.Drawing.Size(520, 37);
+            this.comboBoxNavSelector.TabIndex = 80;
+            this.comboBoxNavSelector.SelectedIndexChanged += new System.EventHandler(this.comboBoxNavSelector_SelectedIndexChanged);
+            // 
+            // textBoxObsBatteryPercent
+            // 
+            this.textBoxObsBatteryPercent.Location = new System.Drawing.Point(128, 946);
+            this.textBoxObsBatteryPercent.Margin = new System.Windows.Forms.Padding(4);
+            this.textBoxObsBatteryPercent.Name = "textBoxObsBatteryPercent";
+            this.textBoxObsBatteryPercent.ReadOnly = true;
+            this.textBoxObsBatteryPercent.Size = new System.Drawing.Size(60, 26);
+            this.textBoxObsBatteryPercent.TabIndex = 72;
+            this.textBoxObsBatteryPercent.Text = "0";
+            // 
+            // textBoxObsMode
+            // 
+            this.textBoxObsMode.Location = new System.Drawing.Point(128, 976);
+            this.textBoxObsMode.Name = "textBoxObsMode";
+            this.textBoxObsMode.ReadOnly = true;
+            this.textBoxObsMode.Size = new System.Drawing.Size(60, 26);
+            this.textBoxObsMode.TabIndex = 71;
+            this.textBoxObsMode.Text = "0";
+            // 
+            // textBoxObsLocSatNr
+            // 
+            this.textBoxObsLocSatNr.Location = new System.Drawing.Point(128, 914);
+            this.textBoxObsLocSatNr.Margin = new System.Windows.Forms.Padding(4);
+            this.textBoxObsLocSatNr.Name = "textBoxObsLocSatNr";
+            this.textBoxObsLocSatNr.ReadOnly = true;
+            this.textBoxObsLocSatNr.Size = new System.Drawing.Size(60, 26);
+            this.textBoxObsLocSatNr.TabIndex = 69;
+            this.textBoxObsLocSatNr.Text = "0";
+            // 
+            // label47
+            // 
+            this.label47.AutoSize = true;
+            this.label47.Location = new System.Drawing.Point(16, 948);
+            this.label47.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label47.Name = "label47";
+            this.label47.Size = new System.Drawing.Size(90, 20);
+            this.label47.TabIndex = 73;
+            this.label47.Text = "Battery [%]:";
+            // 
+            // label53
+            // 
+            this.label53.AutoSize = true;
+            this.label53.Location = new System.Drawing.Point(18, 979);
+            this.label53.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label53.Name = "label53";
+            this.label53.Size = new System.Drawing.Size(53, 20);
+            this.label53.TabIndex = 70;
+            this.label53.Text = "Mode:";
+            // 
+            // label54
+            // 
+            this.label54.AutoSize = true;
+            this.label54.Location = new System.Drawing.Point(16, 919);
+            this.label54.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label54.Name = "label54";
+            this.label54.Size = new System.Drawing.Size(54, 20);
+            this.label54.TabIndex = 68;
+            this.label54.Text = "SatNr:";
+            // 
+            // buttonObsGoHome
+            // 
+            this.buttonObsGoHome.Location = new System.Drawing.Point(1284, 823);
+            this.buttonObsGoHome.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonObsGoHome.Name = "buttonObsGoHome";
+            this.buttonObsGoHome.Size = new System.Drawing.Size(118, 45);
+            this.buttonObsGoHome.TabIndex = 67;
+            this.buttonObsGoHome.Text = "Go Home";
+            this.buttonObsGoHome.UseVisualStyleBackColor = true;
+            // 
+            // label55
+            // 
+            this.label55.AutoSize = true;
+            this.label55.Location = new System.Drawing.Point(1254, 722);
+            this.label55.Name = "label55";
+            this.label55.Size = new System.Drawing.Size(67, 20);
+            this.label55.TabIndex = 66;
+            this.label55.Text = "Altitude:";
+            // 
+            // comboBox3
+            // 
+            this.comboBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBox3.FormattingEnabled = true;
+            this.comboBox3.Items.AddRange(new object[] {
+            "0",
+            "2",
+            "5",
+            "10",
+            "20",
+            "50",
+            "100",
+            "200",
+            "500",
+            "1000"});
+            this.comboBox3.Location = new System.Drawing.Point(1344, 712);
+            this.comboBox3.Name = "comboBox3";
+            this.comboBox3.Size = new System.Drawing.Size(84, 37);
+            this.comboBox3.TabIndex = 65;
+            this.comboBox3.Text = "10";
+            // 
+            // pictureBoxMapObs
+            // 
+            this.pictureBoxMapObs.Location = new System.Drawing.Point(6, 6);
+            this.pictureBoxMapObs.Name = "pictureBoxMapObs";
+            this.pictureBoxMapObs.Size = new System.Drawing.Size(1200, 900);
+            this.pictureBoxMapObs.TabIndex = 64;
+            this.pictureBoxMapObs.TabStop = false;
             // 
             // FormMain
             // 
@@ -2040,6 +2207,9 @@
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             this.tabControlMain.ResumeLayout(false);
+            this.tabPageObserver.ResumeLayout(false);
+            this.tabPageObserver.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMapObs)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -2216,6 +2386,19 @@
         private System.Windows.Forms.TextBox textBoxParam1;
         private System.Windows.Forms.Label labelParam1;
         private System.Windows.Forms.TabControl tabControlMain;
+        private System.Windows.Forms.TabPage tabPageObserver;
+        private System.Windows.Forms.Label label12;
+        public System.Windows.Forms.ComboBox comboBoxNavSelector;
+        private System.Windows.Forms.TextBox textBoxObsBatteryPercent;
+        private System.Windows.Forms.TextBox textBoxObsMode;
+        private System.Windows.Forms.TextBox textBoxObsLocSatNr;
+        private System.Windows.Forms.Label label47;
+        private System.Windows.Forms.Label label53;
+        private System.Windows.Forms.Label label54;
+        private System.Windows.Forms.Button buttonObsGoHome;
+        private System.Windows.Forms.Label label55;
+        public System.Windows.Forms.ComboBox comboBox3;
+        public System.Windows.Forms.PictureBox pictureBoxMapObs;
     }
 }
 

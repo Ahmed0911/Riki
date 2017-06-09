@@ -18,6 +18,7 @@ namespace WinEthApp
     {
         MainSystem mainSystem;
         Navigation navigation;
+        Observer observer;
 
         // Filtered Data (RPY)
         public double FilteredRoll;
@@ -33,7 +34,9 @@ namespace WinEthApp
 
             mainSystem = new MainSystem(this);
             navigation = new Navigation(this, mainSystem);
-            comboBoxMapSelector.SelectedIndex = comboBoxMapSelector.Items.Count-1; // Load default map            
+            observer = new Observer(this, mainSystem);
+            comboBoxMapSelector.SelectedIndex = comboBoxMapSelector.Items.Count - 1; // Load default map            
+            comboBoxNavSelector.SelectedIndex = comboBoxNavSelector.Items.Count - 1; // Load default map            
             // Fill Default Params
             labelParam1.Text = "AltRateBias";
             labelParam2.Text = "AltRateKp";
@@ -58,6 +61,7 @@ namespace WinEthApp
         {
             mainSystem.Update();
             navigation.Update();
+            observer.Update();
 
             // REMOVE START
             // dummy, REMOVE ME
@@ -158,6 +162,7 @@ namespace WinEthApp
             textBoxLocTime.Text = MainSystemData.GPSTime.ToString();
             textBoxLocSatNr.Text = MainSystemData.NumSV.ToString();
             textBoxNavLocSatNr.Text = MainSystemData.NumSV.ToString();
+            textBoxObsLocSatNr.Text = MainSystemData.NumSV.ToString();
             textBoxLocLat.Text = (MainSystemData.Latitude * 1e-7).ToString("0.000000");
             textBoxLocLon.Text = (MainSystemData.Longitude * 1e-7).ToString("0.000000");
             textBoxHomeLat.Text = (MainSystemData.HomeLatitude * 1e-7).ToString("0.000000");
@@ -210,8 +215,10 @@ namespace WinEthApp
             textBoxSystemBattery.Text = MainSystemData.BatteryVoltage.ToString("0.00 V");
             textBoxSystemBatteryPercent.Text = MainSystemData.FuelLevel.ToString("0.0 ") + "%";
             textBoxNavigationBatteryPercent.Text = MainSystemData.FuelLevel.ToString("0.0 ") + "%";
+            textBoxObsBatteryPercent.Text = MainSystemData.FuelLevel.ToString("0.0 ") + "%";
             textBoxSystemMode.Text = MainSystemData.ActualMode.ToString();
             textBoxNavigationMode.Text = MainSystemData.ActualMode.ToString();
+            textBoxObsMode.Text = MainSystemData.ActualMode.ToString();
             textBoxSystemT1.Text = MainSystemData.MotorThrusts[0].ToString();
             textBoxSystemT2.Text = MainSystemData.MotorThrusts[1].ToString();
             textBoxSystemT3.Text = MainSystemData.MotorThrusts[2].ToString();
@@ -231,14 +238,17 @@ namespace WinEthApp
 
             // Update Home
             navigation.SetHome(MainSystemData.HomeLongitude * 1e-7, MainSystemData.HomeLatitude * 1e-7);
+            observer.SetHome(MainSystemData.HomeLongitude * 1e-7, MainSystemData.HomeLatitude * 1e-7);
             // Update current position
             navigation.UpdateCurrentPosition(MainSystemData.Altitude, MainSystemData.Longitude * 1e-7, MainSystemData.Latitude * 1e-7, MainSystemData.ActualMode);
-                
+            observer.UpdateCurrentPosition(MainSystemData.Altitude, MainSystemData.Longitude * 1e-7, MainSystemData.Latitude * 1e-7, MainSystemData.ActualMode);
+
             // Update Target Position
-            if( navigation.llConv.IsHomeSet() )
+            if ( navigation.llConv.IsHomeSet() )
             {
                 float N, E;
                 navigation.llConv.ConvertLLToM(MainSystemData.Latitude * 1e-7, MainSystemData.Longitude * 1e-7, out N, out E);
+                observer.llConv.ConvertLLToM(MainSystemData.Latitude * 1e-7, MainSystemData.Longitude * 1e-7, out N, out E);
             }            
         }
         
@@ -311,6 +321,11 @@ namespace WinEthApp
         {
             if (sender == buttonNavigationWaypointsLoad) navigation.LoadWaypoints();
             else navigation.SaveWaypoints();
-        }      
+        }
+
+        private void comboBoxNavSelector_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            observer.LoadMap(comboBoxNavSelector.SelectedItem.ToString());
+        }
     }
 }
