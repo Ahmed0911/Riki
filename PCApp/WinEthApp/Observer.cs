@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -49,6 +50,9 @@ namespace WinEthApp
         BufferedGraphicsContext DBcurrentContext;
         BufferedGraphics DBmyBuffer;
 
+        // StopWatch
+        Stopwatch watch = new Stopwatch();
+
         public Observer(FormMain formMain, MainSystem mainSystem)
         {
             this.formMain = formMain;
@@ -66,8 +70,9 @@ namespace WinEthApp
             formMain.comboBoxObsRecordVector.SelectedIndex = 0;
 
             // TEST
+            watch.Start();
             SetHome(15.88388, 45.80349); // REMOVE ME!!!
-            UpdateCurrentPosition(21.4f, 15.88288, 45.80449, 2, 0); // REMOVE ME!!!
+            UpdateCurrentPosition(21.4f, 15.88288, 45.80449, 2, 0, false); // REMOVE ME!!!
         }
 
         private void EnumerateMaps(string mapFolder)
@@ -106,6 +111,13 @@ namespace WinEthApp
             if (mode < 3) formMain.textBoxObsMode.BackColor = SystemColors.Control;
             else if (mode < 5 ) formMain.textBoxObsMode.BackColor = Color.Yellow;
             else formMain.textBoxObsMode.BackColor = Color.Lime;
+
+            // Update StopWatch
+            string time = watch.Elapsed.ToString("mm\\:ss\\.f");
+            formMain.textBoxObsMissionTime.Text = time;
+            if (watch.Elapsed < TimeSpan.FromMinutes(10)) formMain.textBoxObsMissionTime.BackColor = Color.Lime;
+            else if(watch.Elapsed < TimeSpan.FromMinutes(15)) formMain.textBoxObsMissionTime.BackColor = Color.Yellow;
+            else formMain.textBoxObsMissionTime.BackColor = Color.Red;
         }
 
         public void DrawMap()
@@ -277,13 +289,22 @@ namespace WinEthApp
             formMain.SendData(0x80, toSend);
         }
 
-        public void UpdateCurrentPosition(float altitude, double longitude, double latitude, int actualMode, double yawDeg)
+        public void UpdateCurrentPosition(float altitude, double longitude, double latitude, int actualMode, double yawDeg, bool motorsEnabled)
         {
             CurrentPosition.Altitude = altitude;
             CurrentPosition.Longitude = longitude;
             CurrentPosition.Latitude = latitude;
 
             CurrentYawDeg = yawDeg;
+
+            if( motorsEnabled )
+            {
+                if (!watch.IsRunning) watch.Start();
+            }
+            else
+            {
+                if (watch.IsRunning) watch.Stop();
+            }
         }
 
         // Helpers

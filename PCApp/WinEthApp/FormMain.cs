@@ -244,7 +244,7 @@ namespace WinEthApp
             observer.SetHome(MainSystemData.HomeLongitude * 1e-7, MainSystemData.HomeLatitude * 1e-7);
             // Update current position
             navigation.UpdateCurrentPosition(MainSystemData.Altitude, MainSystemData.Longitude * 1e-7, MainSystemData.Latitude * 1e-7, MainSystemData.ActualMode);
-            observer.UpdateCurrentPosition(MainSystemData.Altitude, MainSystemData.Longitude * 1e-7, MainSystemData.Latitude * 1e-7, MainSystemData.ActualMode, MainSystemData.Yaw);
+            observer.UpdateCurrentPosition(MainSystemData.Altitude, MainSystemData.Longitude * 1e-7, MainSystemData.Latitude * 1e-7, MainSystemData.ActualMode, MainSystemData.Yaw, MainSystemData.MotorThrusts[0] > 30);
 
             // Update Target Position
             if ( navigation.llConv.IsHomeSet() )

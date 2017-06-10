@@ -201,6 +201,13 @@
             this.labelParam1 = new System.Windows.Forms.Label();
             this.tabControlMain = new System.Windows.Forms.TabControl();
             this.tabPageObserver = new System.Windows.Forms.TabPage();
+            this.buttonObserverExecute = new System.Windows.Forms.Button();
+            this.comboBoxObsRecordVector = new System.Windows.Forms.ComboBox();
+            this.label57 = new System.Windows.Forms.Label();
+            this.comboBoxObsRecordAlt = new System.Windows.Forms.ComboBox();
+            this.label56 = new System.Windows.Forms.Label();
+            this.textBoxObsCamFOV = new System.Windows.Forms.TextBox();
+            this.label27 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.textBoxObsTargetLong = new System.Windows.Forms.TextBox();
@@ -218,13 +225,8 @@
             this.label55 = new System.Windows.Forms.Label();
             this.comboBoxObsAltitude = new System.Windows.Forms.ComboBox();
             this.pictureBoxMapObs = new System.Windows.Forms.PictureBox();
-            this.label27 = new System.Windows.Forms.Label();
-            this.textBoxObsCamFOV = new System.Windows.Forms.TextBox();
-            this.label56 = new System.Windows.Forms.Label();
-            this.comboBoxObsRecordAlt = new System.Windows.Forms.ComboBox();
-            this.comboBoxObsRecordVector = new System.Windows.Forms.ComboBox();
-            this.label57 = new System.Windows.Forms.Label();
-            this.buttonObserverExecute = new System.Windows.Forms.Button();
+            this.textBoxObsMissionTime = new System.Windows.Forms.TextBox();
+            this.label58 = new System.Windows.Forms.Label();
             this.tabPageNavigation.SuspendLayout();
             this.groupBox9.SuspendLayout();
             this.groupBox8.SuspendLayout();
@@ -2040,6 +2042,8 @@
             // 
             // tabPageObserver
             // 
+            this.tabPageObserver.Controls.Add(this.textBoxObsMissionTime);
+            this.tabPageObserver.Controls.Add(this.label58);
             this.tabPageObserver.Controls.Add(this.buttonObserverExecute);
             this.tabPageObserver.Controls.Add(this.comboBoxObsRecordVector);
             this.tabPageObserver.Controls.Add(this.label57);
@@ -2072,11 +2076,103 @@
             this.tabPageObserver.Text = "Observer";
             this.tabPageObserver.UseVisualStyleBackColor = true;
             // 
+            // buttonObserverExecute
+            // 
+            this.buttonObserverExecute.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonObserverExecute.Location = new System.Drawing.Point(1284, 727);
+            this.buttonObserverExecute.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonObserverExecute.Name = "buttonObserverExecute";
+            this.buttonObserverExecute.Size = new System.Drawing.Size(207, 60);
+            this.buttonObserverExecute.TabIndex = 93;
+            this.buttonObserverExecute.Text = "Execute";
+            this.buttonObserverExecute.UseVisualStyleBackColor = true;
+            this.buttonObserverExecute.Click += new System.EventHandler(this.buttonObserverExecute_Click);
+            // 
+            // comboBoxObsRecordVector
+            // 
+            this.comboBoxObsRecordVector.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxObsRecordVector.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxObsRecordVector.FormattingEnabled = true;
+            this.comboBoxObsRecordVector.Items.AddRange(new object[] {
+            "0",
+            "45",
+            "90",
+            "135",
+            "180",
+            "225",
+            "270",
+            "315"});
+            this.comboBoxObsRecordVector.Location = new System.Drawing.Point(1383, 666);
+            this.comboBoxObsRecordVector.Name = "comboBoxObsRecordVector";
+            this.comboBoxObsRecordVector.Size = new System.Drawing.Size(136, 45);
+            this.comboBoxObsRecordVector.TabIndex = 92;
+            // 
+            // label57
+            // 
+            this.label57.AutoSize = true;
+            this.label57.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label57.Location = new System.Drawing.Point(1226, 669);
+            this.label57.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label57.Name = "label57";
+            this.label57.Size = new System.Drawing.Size(152, 37);
+            this.label57.TabIndex = 91;
+            this.label57.Text = "Direction:";
+            // 
+            // comboBoxObsRecordAlt
+            // 
+            this.comboBoxObsRecordAlt.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxObsRecordAlt.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxObsRecordAlt.FormattingEnabled = true;
+            this.comboBoxObsRecordAlt.Items.AddRange(new object[] {
+            "20",
+            "50",
+            "100",
+            "200",
+            "500",
+            "1000",
+            "2000"});
+            this.comboBoxObsRecordAlt.Location = new System.Drawing.Point(1383, 608);
+            this.comboBoxObsRecordAlt.Name = "comboBoxObsRecordAlt";
+            this.comboBoxObsRecordAlt.Size = new System.Drawing.Size(136, 45);
+            this.comboBoxObsRecordAlt.TabIndex = 90;
+            // 
+            // label56
+            // 
+            this.label56.AutoSize = true;
+            this.label56.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label56.Location = new System.Drawing.Point(1226, 611);
+            this.label56.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label56.Name = "label56";
+            this.label56.Size = new System.Drawing.Size(132, 37);
+            this.label56.TabIndex = 89;
+            this.label56.Text = "Max Alt:";
+            // 
+            // textBoxObsCamFOV
+            // 
+            this.textBoxObsCamFOV.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxObsCamFOV.Location = new System.Drawing.Point(1383, 546);
+            this.textBoxObsCamFOV.Margin = new System.Windows.Forms.Padding(4);
+            this.textBoxObsCamFOV.Name = "textBoxObsCamFOV";
+            this.textBoxObsCamFOV.Size = new System.Drawing.Size(136, 44);
+            this.textBoxObsCamFOV.TabIndex = 88;
+            this.textBoxObsCamFOV.Text = "90";
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label27.Location = new System.Drawing.Point(1226, 549);
+            this.label27.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(131, 37);
+            this.label27.TabIndex = 87;
+            this.label27.Text = "FOV [°]:";
+            // 
             // label14
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(1222, 300);
+            this.label14.Location = new System.Drawing.Point(1222, 336);
             this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(269, 37);
@@ -2087,7 +2183,7 @@
             // 
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(1226, 211);
+            this.label15.Location = new System.Drawing.Point(1226, 247);
             this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(242, 37);
@@ -2097,7 +2193,7 @@
             // textBoxObsTargetLong
             // 
             this.textBoxObsTargetLong.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxObsTargetLong.Location = new System.Drawing.Point(1233, 341);
+            this.textBoxObsTargetLong.Location = new System.Drawing.Point(1233, 377);
             this.textBoxObsTargetLong.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxObsTargetLong.Name = "textBoxObsTargetLong";
             this.textBoxObsTargetLong.ReadOnly = true;
@@ -2108,7 +2204,7 @@
             // textBoxObsTargetLat
             // 
             this.textBoxObsTargetLat.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxObsTargetLat.Location = new System.Drawing.Point(1233, 252);
+            this.textBoxObsTargetLat.Location = new System.Drawing.Point(1233, 288);
             this.textBoxObsTargetLat.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxObsTargetLat.Name = "textBoxObsTargetLat";
             this.textBoxObsTargetLat.ReadOnly = true;
@@ -2119,7 +2215,7 @@
             // buttonObsSetTarget
             // 
             this.buttonObsSetTarget.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonObsSetTarget.Location = new System.Drawing.Point(1284, 405);
+            this.buttonObsSetTarget.Location = new System.Drawing.Point(1284, 441);
             this.buttonObsSetTarget.Margin = new System.Windows.Forms.Padding(4);
             this.buttonObsSetTarget.Name = "buttonObsSetTarget";
             this.buttonObsSetTarget.Size = new System.Drawing.Size(207, 60);
@@ -2154,7 +2250,7 @@
             // textBoxObsBatteryPercent
             // 
             this.textBoxObsBatteryPercent.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxObsBatteryPercent.Location = new System.Drawing.Point(1411, 123);
+            this.textBoxObsBatteryPercent.Location = new System.Drawing.Point(1411, 173);
             this.textBoxObsBatteryPercent.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxObsBatteryPercent.Name = "textBoxObsBatteryPercent";
             this.textBoxObsBatteryPercent.ReadOnly = true;
@@ -2187,7 +2283,7 @@
             // 
             this.label47.AutoSize = true;
             this.label47.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label47.Location = new System.Drawing.Point(1222, 126);
+            this.label47.Location = new System.Drawing.Point(1222, 176);
             this.label47.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label47.Name = "label47";
             this.label47.Size = new System.Drawing.Size(181, 37);
@@ -2265,97 +2361,27 @@
             this.pictureBoxMapObs.TabIndex = 64;
             this.pictureBoxMapObs.TabStop = false;
             // 
-            // label27
+            // textBoxObsMissionTime
             // 
-            this.label27.AutoSize = true;
-            this.label27.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label27.Location = new System.Drawing.Point(1226, 549);
-            this.label27.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(131, 37);
-            this.label27.TabIndex = 87;
-            this.label27.Text = "FOV [°]:";
+            this.textBoxObsMissionTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxObsMissionTime.Location = new System.Drawing.Point(1383, 120);
+            this.textBoxObsMissionTime.Margin = new System.Windows.Forms.Padding(4);
+            this.textBoxObsMissionTime.Name = "textBoxObsMissionTime";
+            this.textBoxObsMissionTime.ReadOnly = true;
+            this.textBoxObsMissionTime.Size = new System.Drawing.Size(136, 44);
+            this.textBoxObsMissionTime.TabIndex = 94;
+            this.textBoxObsMissionTime.Text = "0";
             // 
-            // textBoxObsCamFOV
+            // label58
             // 
-            this.textBoxObsCamFOV.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxObsCamFOV.Location = new System.Drawing.Point(1383, 546);
-            this.textBoxObsCamFOV.Margin = new System.Windows.Forms.Padding(4);
-            this.textBoxObsCamFOV.Name = "textBoxObsCamFOV";
-            this.textBoxObsCamFOV.Size = new System.Drawing.Size(136, 44);
-            this.textBoxObsCamFOV.TabIndex = 88;
-            this.textBoxObsCamFOV.Text = "90";
-            // 
-            // label56
-            // 
-            this.label56.AutoSize = true;
-            this.label56.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label56.Location = new System.Drawing.Point(1226, 611);
-            this.label56.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label56.Name = "label56";
-            this.label56.Size = new System.Drawing.Size(132, 37);
-            this.label56.TabIndex = 89;
-            this.label56.Text = "Max Alt:";
-            // 
-            // comboBoxObsRecordAlt
-            // 
-            this.comboBoxObsRecordAlt.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxObsRecordAlt.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBoxObsRecordAlt.FormattingEnabled = true;
-            this.comboBoxObsRecordAlt.Items.AddRange(new object[] {
-            "20",
-            "50",
-            "100",
-            "200",
-            "500",
-            "1000",
-            "2000"});
-            this.comboBoxObsRecordAlt.Location = new System.Drawing.Point(1383, 608);
-            this.comboBoxObsRecordAlt.Name = "comboBoxObsRecordAlt";
-            this.comboBoxObsRecordAlt.Size = new System.Drawing.Size(136, 45);
-            this.comboBoxObsRecordAlt.TabIndex = 90;
-            // 
-            // comboBoxObsRecordVector
-            // 
-            this.comboBoxObsRecordVector.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxObsRecordVector.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBoxObsRecordVector.FormattingEnabled = true;
-            this.comboBoxObsRecordVector.Items.AddRange(new object[] {
-            "0",
-            "45",
-            "90",
-            "135",
-            "180",
-            "225",
-            "270",
-            "315"});
-            this.comboBoxObsRecordVector.Location = new System.Drawing.Point(1383, 666);
-            this.comboBoxObsRecordVector.Name = "comboBoxObsRecordVector";
-            this.comboBoxObsRecordVector.Size = new System.Drawing.Size(136, 45);
-            this.comboBoxObsRecordVector.TabIndex = 92;
-            // 
-            // label57
-            // 
-            this.label57.AutoSize = true;
-            this.label57.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label57.Location = new System.Drawing.Point(1226, 669);
-            this.label57.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label57.Name = "label57";
-            this.label57.Size = new System.Drawing.Size(152, 37);
-            this.label57.TabIndex = 91;
-            this.label57.Text = "Direction:";
-            // 
-            // buttonObserverExecute
-            // 
-            this.buttonObserverExecute.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonObserverExecute.Location = new System.Drawing.Point(1284, 727);
-            this.buttonObserverExecute.Margin = new System.Windows.Forms.Padding(4);
-            this.buttonObserverExecute.Name = "buttonObserverExecute";
-            this.buttonObserverExecute.Size = new System.Drawing.Size(207, 60);
-            this.buttonObserverExecute.TabIndex = 93;
-            this.buttonObserverExecute.Text = "Execute";
-            this.buttonObserverExecute.UseVisualStyleBackColor = true;
-            this.buttonObserverExecute.Click += new System.EventHandler(this.buttonObserverExecute_Click);
+            this.label58.AutoSize = true;
+            this.label58.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label58.Location = new System.Drawing.Point(1222, 123);
+            this.label58.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label58.Name = "label58";
+            this.label58.Size = new System.Drawing.Size(97, 37);
+            this.label58.TabIndex = 95;
+            this.label58.Text = "Time:";
             // 
             // FormMain
             // 
@@ -2591,6 +2617,8 @@
         public System.Windows.Forms.ComboBox comboBoxObsRecordVector;
         private System.Windows.Forms.Label label57;
         public System.Windows.Forms.TextBox textBoxObsCamFOV;
+        private System.Windows.Forms.Label label58;
+        public System.Windows.Forms.TextBox textBoxObsMissionTime;
     }
 }
 
