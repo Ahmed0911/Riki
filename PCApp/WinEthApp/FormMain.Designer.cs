@@ -201,6 +201,11 @@
             this.labelParam1 = new System.Windows.Forms.Label();
             this.tabControlMain = new System.Windows.Forms.TabControl();
             this.tabPageObserver = new System.Windows.Forms.TabPage();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.textBoxObsTargetLong = new System.Windows.Forms.TextBox();
+            this.textBoxObsTargetLat = new System.Windows.Forms.TextBox();
+            this.buttonObsSetTarget = new System.Windows.Forms.Button();
             this.label12 = new System.Windows.Forms.Label();
             this.comboBoxNavSelector = new System.Windows.Forms.ComboBox();
             this.textBoxObsBatteryPercent = new System.Windows.Forms.TextBox();
@@ -213,11 +218,6 @@
             this.label55 = new System.Windows.Forms.Label();
             this.comboBoxObsAltitude = new System.Windows.Forms.ComboBox();
             this.pictureBoxMapObs = new System.Windows.Forms.PictureBox();
-            this.buttonObsSetTarget = new System.Windows.Forms.Button();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.textBoxObsTargetLong = new System.Windows.Forms.TextBox();
-            this.textBoxObsTargetLat = new System.Windows.Forms.TextBox();
             this.tabPageNavigation.SuspendLayout();
             this.groupBox9.SuspendLayout();
             this.groupBox8.SuspendLayout();
@@ -2058,84 +2058,147 @@
             this.tabPageObserver.Text = "Observer";
             this.tabPageObserver.UseVisualStyleBackColor = true;
             // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(1222, 300);
+            this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(269, 37);
+            this.label14.TabIndex = 86;
+            this.label14.Text = "Target Longitude:";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(1226, 211);
+            this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(242, 37);
+            this.label15.TabIndex = 85;
+            this.label15.Text = "Target Latitude:";
+            // 
+            // textBoxObsTargetLong
+            // 
+            this.textBoxObsTargetLong.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxObsTargetLong.Location = new System.Drawing.Point(1233, 341);
+            this.textBoxObsTargetLong.Margin = new System.Windows.Forms.Padding(4);
+            this.textBoxObsTargetLong.Name = "textBoxObsTargetLong";
+            this.textBoxObsTargetLong.ReadOnly = true;
+            this.textBoxObsTargetLong.Size = new System.Drawing.Size(286, 44);
+            this.textBoxObsTargetLong.TabIndex = 83;
+            this.textBoxObsTargetLong.Text = "0";
+            // 
+            // textBoxObsTargetLat
+            // 
+            this.textBoxObsTargetLat.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxObsTargetLat.Location = new System.Drawing.Point(1233, 252);
+            this.textBoxObsTargetLat.Margin = new System.Windows.Forms.Padding(4);
+            this.textBoxObsTargetLat.Name = "textBoxObsTargetLat";
+            this.textBoxObsTargetLat.ReadOnly = true;
+            this.textBoxObsTargetLat.Size = new System.Drawing.Size(286, 44);
+            this.textBoxObsTargetLat.TabIndex = 84;
+            this.textBoxObsTargetLat.Text = "0";
+            // 
+            // buttonObsSetTarget
+            // 
+            this.buttonObsSetTarget.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonObsSetTarget.Location = new System.Drawing.Point(1284, 405);
+            this.buttonObsSetTarget.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonObsSetTarget.Name = "buttonObsSetTarget";
+            this.buttonObsSetTarget.Size = new System.Drawing.Size(207, 60);
+            this.buttonObsSetTarget.TabIndex = 82;
+            this.buttonObsSetTarget.Text = "Set Target";
+            this.buttonObsSetTarget.UseVisualStyleBackColor = true;
+            this.buttonObsSetTarget.Click += new System.EventHandler(this.buttonObsSetTarget_Click);
+            // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(236, 908);
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(7, 935);
             this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(44, 20);
+            this.label12.Size = new System.Drawing.Size(131, 55);
             this.label12.TabIndex = 81;
             this.label12.Text = "Map:";
             // 
             // comboBoxNavSelector
             // 
             this.comboBoxNavSelector.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxNavSelector.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxNavSelector.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxNavSelector.FormattingEnabled = true;
-            this.comboBoxNavSelector.ItemHeight = 29;
-            this.comboBoxNavSelector.Location = new System.Drawing.Point(241, 939);
+            this.comboBoxNavSelector.ItemHeight = 55;
+            this.comboBoxNavSelector.Location = new System.Drawing.Point(145, 932);
             this.comboBoxNavSelector.Name = "comboBoxNavSelector";
-            this.comboBoxNavSelector.Size = new System.Drawing.Size(520, 37);
+            this.comboBoxNavSelector.Size = new System.Drawing.Size(1061, 63);
             this.comboBoxNavSelector.TabIndex = 80;
             this.comboBoxNavSelector.SelectedIndexChanged += new System.EventHandler(this.comboBoxNavSelector_SelectedIndexChanged);
             // 
             // textBoxObsBatteryPercent
             // 
-            this.textBoxObsBatteryPercent.Location = new System.Drawing.Point(128, 946);
+            this.textBoxObsBatteryPercent.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxObsBatteryPercent.Location = new System.Drawing.Point(1411, 123);
             this.textBoxObsBatteryPercent.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxObsBatteryPercent.Name = "textBoxObsBatteryPercent";
             this.textBoxObsBatteryPercent.ReadOnly = true;
-            this.textBoxObsBatteryPercent.Size = new System.Drawing.Size(60, 26);
+            this.textBoxObsBatteryPercent.Size = new System.Drawing.Size(108, 44);
             this.textBoxObsBatteryPercent.TabIndex = 72;
             this.textBoxObsBatteryPercent.Text = "0";
             // 
             // textBoxObsMode
             // 
-            this.textBoxObsMode.Location = new System.Drawing.Point(128, 976);
+            this.textBoxObsMode.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxObsMode.Location = new System.Drawing.Point(1411, 67);
             this.textBoxObsMode.Name = "textBoxObsMode";
             this.textBoxObsMode.ReadOnly = true;
-            this.textBoxObsMode.Size = new System.Drawing.Size(60, 26);
+            this.textBoxObsMode.Size = new System.Drawing.Size(70, 44);
             this.textBoxObsMode.TabIndex = 71;
             this.textBoxObsMode.Text = "0";
             // 
             // textBoxObsLocSatNr
             // 
-            this.textBoxObsLocSatNr.Location = new System.Drawing.Point(128, 914);
+            this.textBoxObsLocSatNr.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxObsLocSatNr.Location = new System.Drawing.Point(1411, 12);
             this.textBoxObsLocSatNr.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxObsLocSatNr.Name = "textBoxObsLocSatNr";
             this.textBoxObsLocSatNr.ReadOnly = true;
-            this.textBoxObsLocSatNr.Size = new System.Drawing.Size(60, 26);
+            this.textBoxObsLocSatNr.Size = new System.Drawing.Size(108, 44);
             this.textBoxObsLocSatNr.TabIndex = 69;
             this.textBoxObsLocSatNr.Text = "0";
             // 
             // label47
             // 
             this.label47.AutoSize = true;
-            this.label47.Location = new System.Drawing.Point(16, 948);
+            this.label47.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label47.Location = new System.Drawing.Point(1222, 126);
             this.label47.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label47.Name = "label47";
-            this.label47.Size = new System.Drawing.Size(90, 20);
+            this.label47.Size = new System.Drawing.Size(181, 37);
             this.label47.TabIndex = 73;
             this.label47.Text = "Battery [%]:";
             // 
             // label53
             // 
             this.label53.AutoSize = true;
-            this.label53.Location = new System.Drawing.Point(18, 979);
+            this.label53.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label53.Location = new System.Drawing.Point(1226, 70);
             this.label53.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label53.Name = "label53";
-            this.label53.Size = new System.Drawing.Size(53, 20);
+            this.label53.Size = new System.Drawing.Size(105, 37);
             this.label53.TabIndex = 70;
             this.label53.Text = "Mode:";
             // 
             // label54
             // 
             this.label54.AutoSize = true;
-            this.label54.Location = new System.Drawing.Point(16, 919);
+            this.label54.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label54.Location = new System.Drawing.Point(1222, 15);
             this.label54.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label54.Name = "label54";
-            this.label54.Size = new System.Drawing.Size(54, 20);
+            this.label54.Size = new System.Drawing.Size(109, 37);
             this.label54.TabIndex = 68;
             this.label54.Text = "SatNr:";
             // 
@@ -2185,57 +2248,6 @@
             this.pictureBoxMapObs.Size = new System.Drawing.Size(1200, 900);
             this.pictureBoxMapObs.TabIndex = 64;
             this.pictureBoxMapObs.TabStop = false;
-            // 
-            // buttonObsSetTarget
-            // 
-            this.buttonObsSetTarget.Location = new System.Drawing.Point(1345, 727);
-            this.buttonObsSetTarget.Margin = new System.Windows.Forms.Padding(4);
-            this.buttonObsSetTarget.Name = "buttonObsSetTarget";
-            this.buttonObsSetTarget.Size = new System.Drawing.Size(118, 45);
-            this.buttonObsSetTarget.TabIndex = 82;
-            this.buttonObsSetTarget.Text = "Set Target";
-            this.buttonObsSetTarget.UseVisualStyleBackColor = true;
-            this.buttonObsSetTarget.Click += new System.EventHandler(this.buttonObsSetTarget_Click);
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(1292, 816);
-            this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(134, 20);
-            this.label14.TabIndex = 86;
-            this.label14.Text = "Target Longitude:";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(1305, 783);
-            this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(121, 20);
-            this.label15.TabIndex = 85;
-            this.label15.Text = "Target Latitude:";
-            // 
-            // textBoxObsTargetLong
-            // 
-            this.textBoxObsTargetLong.Location = new System.Drawing.Point(1434, 813);
-            this.textBoxObsTargetLong.Margin = new System.Windows.Forms.Padding(4);
-            this.textBoxObsTargetLong.Name = "textBoxObsTargetLong";
-            this.textBoxObsTargetLong.ReadOnly = true;
-            this.textBoxObsTargetLong.Size = new System.Drawing.Size(116, 26);
-            this.textBoxObsTargetLong.TabIndex = 83;
-            this.textBoxObsTargetLong.Text = "15.88388";
-            // 
-            // textBoxObsTargetLat
-            // 
-            this.textBoxObsTargetLat.Location = new System.Drawing.Point(1434, 780);
-            this.textBoxObsTargetLat.Margin = new System.Windows.Forms.Padding(4);
-            this.textBoxObsTargetLat.Name = "textBoxObsTargetLat";
-            this.textBoxObsTargetLat.ReadOnly = true;
-            this.textBoxObsTargetLat.Size = new System.Drawing.Size(116, 26);
-            this.textBoxObsTargetLat.TabIndex = 84;
-            this.textBoxObsTargetLat.Text = "45.80349";
             // 
             // FormMain
             // 
@@ -2450,8 +2462,6 @@
         private System.Windows.Forms.Label label12;
         public System.Windows.Forms.ComboBox comboBoxNavSelector;
         private System.Windows.Forms.TextBox textBoxObsBatteryPercent;
-        private System.Windows.Forms.TextBox textBoxObsMode;
-        private System.Windows.Forms.TextBox textBoxObsLocSatNr;
         private System.Windows.Forms.Label label47;
         private System.Windows.Forms.Label label53;
         private System.Windows.Forms.Label label54;
@@ -2461,9 +2471,11 @@
         public System.Windows.Forms.ComboBox comboBoxObsAltitude;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.TextBox textBoxObsTargetLong;
-        private System.Windows.Forms.TextBox textBoxObsTargetLat;
         private System.Windows.Forms.Button buttonObsSetTarget;
+        public System.Windows.Forms.TextBox textBoxObsLocSatNr;
+        public System.Windows.Forms.TextBox textBoxObsMode;
+        public System.Windows.Forms.TextBox textBoxObsTargetLong;
+        public System.Windows.Forms.TextBox textBoxObsTargetLat;
     }
 }
 

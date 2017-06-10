@@ -36,9 +36,9 @@ namespace WinEthApp
         SWaypoint CurrentPosition;
 
         // Target To Watch
-        SWaypoint TargetWaypoint2;
+        SWaypoint TargetPosition;
 
-        // Observer Target
+        // Observer/Drone Target Position
         SWaypoint TargetWaypoint;
 
         // Double buffering
@@ -87,6 +87,18 @@ namespace WinEthApp
         public void Update()
         {
             DrawMap();
+
+            // check colors and states
+            int numOfSats = int.Parse(formMain.textBoxObsLocSatNr.Text);
+            if (numOfSats < 5) formMain.textBoxObsLocSatNr.BackColor = Color.Red;
+            else if(numOfSats < 10) formMain.textBoxObsLocSatNr.BackColor = Color.Yellow;
+            else formMain.textBoxObsLocSatNr.BackColor = Color.Lime;
+
+            // check colors and states
+            int mode = int.Parse(formMain.textBoxObsMode.Text);
+            if (mode < 3) formMain.textBoxObsMode.BackColor = SystemColors.Control;
+            else if (mode < 5 ) formMain.textBoxObsMode.BackColor = Color.Yellow;
+            else formMain.textBoxObsMode.BackColor = Color.Lime;
         }
 
         public void DrawMap()
@@ -119,16 +131,26 @@ namespace WinEthApp
 	        {
 		        ConvertLocationLL2Pix(HomeLongitude, HomeLatitude, out mapX, out mapY);
                 DBmyBuffer.Graphics.DrawEllipse(new Pen(Color.White, 3), mapX - 16, mapY - 16, 32, 32);
-                DBmyBuffer.Graphics.DrawString("H", fontHome, Brushes.White, mapX-16, mapY - 17 );
-		        // Draw Target Circles
-		        float DistanceM = 250;
-                float areaSize = DistanceM / (float)MetersPerPix;
-                DBmyBuffer.Graphics.DrawEllipse(new Pen(Color.Yellow, 2), mapX - areaSize, mapY - areaSize, areaSize*2, areaSize*2);
+                DBmyBuffer.Graphics.DrawString("H", fontHome, Brushes.White, mapX-16, mapY - 17 );		        
 	        }
+           
+            // Draw Target to Observe
+            if(TargetPosition.Latitude != 0)
+            {
+                ConvertLocationLL2Pix(TargetPosition.Longitude, TargetPosition.Latitude, out mapX, out mapY);
+                //DBmyBuffer.Graphics.DrawEllipse(new Pen(Color.White, 3), mapX - 16, mapY - 16, 32, 32);
+                DBmyBuffer.Graphics.DrawRectangle(new Pen(Color.OrangeRed, 3), mapX - 16, mapY - 16, 32, 32);
+                DBmyBuffer.Graphics.DrawLine(new Pen(Color.OrangeRed, 2), mapX - 16, mapY - 16, mapX + 16, mapY + 16);
+                DBmyBuffer.Graphics.DrawLine(new Pen(Color.OrangeRed, 2), mapX + 16, mapY - 16, mapX - 16, mapY + 16);
+
+                // Draw Drone Observation Circle
+                float DistanceM = 50; // TODO: Calculate this crap
+                float areaSize = DistanceM / (float)MetersPerPix;
+                DBmyBuffer.Graphics.DrawEllipse(new Pen(Color.Yellow, 2), mapX - areaSize, mapY - areaSize, areaSize * 2, areaSize * 2);
+            }
             
-	       
-		    // immediate mode
-		    if (TargetWaypoint.Latitude != 0)
+            // immediate mode
+            if (TargetWaypoint.Latitude != 0)
 		    {
 			    ConvertLocationLL2Pix(TargetWaypoint.Longitude, TargetWaypoint.Latitude, out mapX, out mapY);
                 DBmyBuffer.Graphics.DrawEllipse(new Pen(Color.White, 3), mapX-16, mapY-16, 32, 32 );
@@ -142,32 +164,7 @@ namespace WinEthApp
 	   
             // render to screen            
             DBmyBuffer.Render();
-        }
-
-        public void OnMouseClick(Point point)
-        {
-            float DPI = 1.0F; // TODO!!!
-            float mapX = point.X * DPI; 
-            float mapY = point.Y * DPI;
-
-            double lon, lat;
-            ConvertLocationPix2LL(out lon, out lat, mapX, mapY);
-
-            float Altitude;
-            if (float.TryParse(formMain.comboBoxAltitude.Text, out Altitude) == false)
-            {
-                Altitude = 10; //default
-            }
-
-            if (formMain.radioButtonGoto.Checked)
-            {
-                TargetWaypoint.Altitude = Altitude;
-                TargetWaypoint.Latitude = lat;
-                TargetWaypoint.Longitude = lon;
-                // send target
-                Goto(TargetWaypoint);
-            }
-        }     
+        }    
 
         public void GoHome()
         {
@@ -186,7 +183,12 @@ namespace WinEthApp
 
         public void SetTarget()
         {
-            throw new NotImplementedException();
+            // Set target Location (target for observation)
+            TargetPosition = CurrentPosition;
+            TargetPosition.Altitude = 0; // set altitude to zero!
+
+            formMain.textBoxObsTargetLat.Text = TargetPosition.Latitude.ToString("0.000000");
+            formMain.textBoxObsTargetLong.Text = TargetPosition.Longitude.ToString("0.000000");
         }
 
         private void Goto(SWaypoint targetWaypoint)
