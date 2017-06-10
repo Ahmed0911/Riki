@@ -34,12 +34,16 @@ namespace WinEthApp
 
         // Current position
         SWaypoint CurrentPosition;
+        double CurrentYawDeg;
 
         // Target To Watch
         SWaypoint TargetPosition;
 
         // Observer/Drone Target Position
-        SWaypoint TargetWaypoint;
+        SWaypoint ObserverPosition;
+
+        // Last Executed GotoPosition
+        SWaypoint ExecutedGotoPosition;
 
         // Double buffering
         BufferedGraphicsContext DBcurrentContext;
@@ -58,9 +62,12 @@ namespace WinEthApp
 
             EnumerateMaps("Map");
 
+            formMain.comboBoxObsRecordAlt.SelectedIndex = 2;
+            formMain.comboBoxObsRecordVector.SelectedIndex = 0;
+
             // TEST
             SetHome(15.88388, 45.80349); // REMOVE ME!!!
-            UpdateCurrentPosition(21.4f, 15.88288, 45.80449, 2); // REMOVE ME!!!
+            UpdateCurrentPosition(21.4f, 15.88288, 45.80449, 2, 0); // REMOVE ME!!!
         }
 
         private void EnumerateMaps(string mapFolder)
@@ -126,8 +133,15 @@ namespace WinEthApp
             strF.Alignment = StringAlignment.Center;
             DBmyBuffer.Graphics.DrawString(string.Format("{0:0.0}", CurrentPosition.Altitude), fontWaypoints, Brushes.BlanchedAlmond, mapX - 1, mapY + 20, strF);
 
-	        // draw home
-	        if (HomeSet)
+            // draw direction
+            double yawRad = Math.PI * CurrentYawDeg / 180;
+            PointF yawDeltaPix = new PointF((float)(Math.Sin(yawRad) * 80), -(float)(Math.Cos(yawRad) * 80));
+            float pieSize = 80;
+            DBmyBuffer.Graphics.FillPie(new SolidBrush(Color.FromArgb(100, 250, 50, 50)), mapX- pieSize, mapY- pieSize, pieSize*2, pieSize*2, -90 + (float)CurrentYawDeg-20, 40);
+            DBmyBuffer.Graphics.DrawLine(Pens.YellowGreen, mapX, mapY, mapX + yawDeltaPix.X, mapY + yawDeltaPix.Y);
+
+            // draw home
+            if (HomeSet)
 	        {
 		        ConvertLocationLL2Pix(HomeLongitude, HomeLatitude, out mapX, out mapY);
                 DBmyBuffer.Graphics.DrawEllipse(new Pen(Color.White, 3), mapX - 16, mapY - 16, 32, 32);
@@ -138,30 +152,41 @@ namespace WinEthApp
             if(TargetPosition.Latitude != 0)
             {
                 ConvertLocationLL2Pix(TargetPosition.Longitude, TargetPosition.Latitude, out mapX, out mapY);
-                //DBmyBuffer.Graphics.DrawEllipse(new Pen(Color.White, 3), mapX - 16, mapY - 16, 32, 32);
                 DBmyBuffer.Graphics.DrawRectangle(new Pen(Color.OrangeRed, 3), mapX - 16, mapY - 16, 32, 32);
                 DBmyBuffer.Graphics.DrawLine(new Pen(Color.OrangeRed, 2), mapX - 16, mapY - 16, mapX + 16, mapY + 16);
                 DBmyBuffer.Graphics.DrawLine(new Pen(Color.OrangeRed, 2), mapX + 16, mapY - 16, mapX - 16, mapY + 16);
 
                 // Draw Drone Observation Circle
-                float DistanceM = 50; // TODO: Calculate this crap
+                float DistanceM = (float)CalculateRangeAndTarget();
                 float areaSize = DistanceM / (float)MetersPerPix;
                 DBmyBuffer.Graphics.DrawEllipse(new Pen(Color.Yellow, 2), mapX - areaSize, mapY - areaSize, areaSize * 2, areaSize * 2);
             }
             
-            // immediate mode
-            if (TargetWaypoint.Latitude != 0)
+            // Observer Target Position
+            if (ObserverPosition.Latitude != 0)
 		    {
-			    ConvertLocationLL2Pix(TargetWaypoint.Longitude, TargetWaypoint.Latitude, out mapX, out mapY);
+			    ConvertLocationLL2Pix(ObserverPosition.Longitude, ObserverPosition.Latitude, out mapX, out mapY);
                 DBmyBuffer.Graphics.DrawEllipse(new Pen(Color.White, 3), mapX-16, mapY-16, 32, 32 );
                 DBmyBuffer.Graphics.DrawLine(new Pen(Color.White, 1), mapX - 20, mapY - 20, mapX + 20, mapY + 20);
                 DBmyBuffer.Graphics.DrawLine(new Pen(Color.White, 1), mapX + 20, mapY - 20, mapX - 20, mapY + 20);
 
                 StringFormat stringFormat = new StringFormat();
                 stringFormat.Alignment = StringAlignment.Center;
-                DBmyBuffer.Graphics.DrawString(string.Format("{0}", TargetWaypoint.Altitude), fontWaypoints, Brushes.White, mapX - 1, mapY + 20, stringFormat);
+                DBmyBuffer.Graphics.DrawString(string.Format("{0}", ObserverPosition.Altitude), fontWaypoints, Brushes.White, mapX - 1, mapY + 20, stringFormat);
             }
-	   
+
+            // Executed Goto Position
+            if (ExecutedGotoPosition.Latitude != 0)
+            {
+                ConvertLocationLL2Pix(ExecutedGotoPosition.Longitude, ExecutedGotoPosition.Latitude, out mapX, out mapY);
+
+                DBmyBuffer.Graphics.DrawRectangle(new Pen(Color.Navy, 3), mapX - 20, mapY - 20, 40, 40);
+                StringFormat stringFormat = new StringFormat();
+                stringFormat.Alignment = StringAlignment.Center;
+                DBmyBuffer.Graphics.DrawString(string.Format("{0}", ExecutedGotoPosition.Altitude), fontWaypoints, Brushes.Navy, mapX - 1, mapY - 40, stringFormat);
+            }
+            
+
             // render to screen            
             DBmyBuffer.Render();
         }    
@@ -174,11 +199,13 @@ namespace WinEthApp
                 Altitude = 10; //default
             }
 
-            TargetWaypoint.Altitude = Altitude;
-            TargetWaypoint.Latitude = HomeLatitude;
-            TargetWaypoint.Longitude = HomeLongitude;
+            SWaypoint homeTarget = new SWaypoint();
+            homeTarget.Altitude = Altitude;
+            homeTarget.Latitude = HomeLatitude;
+            homeTarget.Longitude = HomeLongitude;
+
             // send target
-            Goto(TargetWaypoint);        
+            Goto(homeTarget);        
         }
 
         public void SetTarget()
@@ -191,6 +218,49 @@ namespace WinEthApp
             formMain.textBoxObsTargetLong.Text = TargetPosition.Longitude.ToString("0.000000");
         }
 
+        public void Execute()
+        {
+            if(ObserverPosition.Latitude != 0 && ObserverPosition.Altitude > 9) // safety check
+            {
+                // send target
+                Goto(ObserverPosition);
+            }
+        }
+
+        private double CalculateRangeAndTarget()
+        {
+            double FOV = double.Parse(formMain.textBoxObsCamFOV.Text);
+            double altitude = double.Parse((string)formMain.comboBoxObsRecordAlt.SelectedItem);
+            double vector = double.Parse((string)formMain.comboBoxObsRecordVector.SelectedItem);
+
+            // Calculate Range
+            double targetAltitude = altitude / 2; // Altitude is half of max recording altitude
+            double recordingRange = targetAltitude / Math.Tan((Math.PI * FOV / 180.0) /2);
+            double range = recordingRange * 1.2; // Add 20 % Safety
+
+            // Calculate Target
+            if (TargetPosition.Latitude != 0) // target position exists
+            {
+                // convert target to pixels
+                float mapXPix, mapYPix;
+                ConvertLocationLL2Pix(TargetPosition.Longitude, TargetPosition.Latitude, out mapXPix, out mapYPix);
+
+                // add location vector
+                double rangeInPixels = range / MetersPerPix;
+                double ObserverPositionXPix = mapXPix + Math.Sin(Math.PI * vector / 180.0) * rangeInPixels;
+                double ObserverPositionYPix = mapYPix - Math.Cos(Math.PI * vector / 180.0) * rangeInPixels;
+
+                // convert back to LL
+                double lonObs, latObs;
+                ConvertLocationPix2LL(out lonObs, out latObs, (float)ObserverPositionXPix, (float)ObserverPositionYPix);
+                ObserverPosition.Latitude = latObs;
+                ObserverPosition.Longitude = lonObs;
+                ObserverPosition.Altitude = (float)targetAltitude;
+            }
+
+            return range;
+        }
+
         private void Goto(SWaypoint targetWaypoint)
         {
             SCommGotoExecute gotoExecuteCmd = new SCommGotoExecute();
@@ -199,16 +269,21 @@ namespace WinEthApp
             gotoExecuteCmd.TargetWaypoint.Longitude = (int)(targetWaypoint.Longitude * 1e7);
             gotoExecuteCmd.TargetWaypoint.Latitude = (int)(targetWaypoint.Latitude * 1e7);
 
+            // copy executed location
+            ExecutedGotoPosition = targetWaypoint;
+
             // Send
             byte[] toSend = Comm.GetBytes(gotoExecuteCmd);
             formMain.SendData(0x80, toSend);
         }
 
-        public void UpdateCurrentPosition(float altitude, double longitude, double latitude, int actualMode)
+        public void UpdateCurrentPosition(float altitude, double longitude, double latitude, int actualMode, double yawDeg)
         {
             CurrentPosition.Altitude = altitude;
             CurrentPosition.Longitude = longitude;
             CurrentPosition.Latitude = latitude;
+
+            CurrentYawDeg = yawDeg;
         }
 
         // Helpers
