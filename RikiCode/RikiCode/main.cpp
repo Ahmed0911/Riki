@@ -61,8 +61,8 @@ CtrlModelClass ctrl;
 LLConverter llConv;
 
 // GPS Port (serialU2->Internal GPS, serialU5->External GPS on Ext Comm.)
-//#define serialGPS serialU2
-#define serialGPS serialU5
+#define serialGPS serialU2
+//#define serialGPS serialU5
 
 // Systick
 #define SysTickFrequency 400
@@ -110,15 +110,9 @@ int WayExecute = 0;
 float TrajZNEVParams[4];
 
 // OFFSETS
-//#define GYROOFFX -1.55f
-//#define GYROOFFY -1.75f
-//#define GYROOFFZ -0.35f
-//#define MAGOFFX -0.45f
-//#define MAGOFFY -12.0f
-//#define MAGOFFZ -19.5f
-#define GYROOFFX 0.189f
-#define GYROOFFY -2.710f
-#define GYROOFFZ 0.774f
+#define GYROOFFX -0.88f
+#define GYROOFFY 1.51f
+#define GYROOFFZ -0.73f
 #define MAGOFFX -13.66f
 #define MAGOFFY 22.90f
 #define MAGOFFZ -11.49f
@@ -602,7 +596,7 @@ void InitGPS(void)
 	int toSend = gps.GenerateMsgCFGPrt(CommBuffer, 57600); // set to 57k
 	serialGPS.Write(CommBuffer, toSend);
 	SysCtlDelay(g_ui32SysClock/10); // 100ms wait, flush
-	serialGPS.Init(UART5_BASE, 57600); // open with 57k (115k doesn't work well??? small int FIFO, wrong INT prio?)'
+	serialGPS.Init(UART2_BASE, 57600); // open with 57k (115k doesn't work well??? small int FIFO, wrong INT prio?)'
 	toSend = gps.GenerateMsgCFGRate(CommBuffer, 100); // 100ms rate, 10Hz
 	serialGPS.Write(CommBuffer, toSend);
 	toSend = gps.GenerateMsgCFGMsg(CommBuffer, 0x01, 0x07, 1); // NAV-PVT
