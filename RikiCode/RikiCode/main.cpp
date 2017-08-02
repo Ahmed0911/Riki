@@ -110,14 +110,14 @@ int WayExecute = 0;
 float TrajZNEVParams[4];
 
 // OFFSETS
-#define GYROOFFX -0.88f
-#define GYROOFFY 1.51f
-#define GYROOFFZ -0.73f
-#define MAGOFFX -13.66f
-#define MAGOFFY 22.90f
-#define MAGOFFZ -11.49f
+#define GYROOFFX -1.08f
+#define GYROOFFY 1.47f
+#define GYROOFFZ -0.79f
+#define MAGOFFX 25.2328f
+#define MAGOFFY 31.8127f
+#define MAGOFFZ 5.1955f
 #define ATTOFFROLL 1.0f
-#define ATTOFFPITCH -0.2f
+#define ATTOFFPITCH 1.5f
 
 void main(void)
 {
