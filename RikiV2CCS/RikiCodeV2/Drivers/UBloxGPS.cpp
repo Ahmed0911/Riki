@@ -239,6 +239,8 @@ void UBloxGPS::ParseMessage()
 			memcpy(&longitude, &pyld[24], sizeof(longitude));
 			INT32 latitude; // 1e-7 [deg]
 			memcpy(&latitude, &pyld[28], sizeof(latitude));
+			INT32 heightEllipsoid; // WGS84 ellipsoid [mm]
+			memcpy(&heightEllipsoid, &pyld[32], sizeof(heightEllipsoid));
 			INT32 heightMSL; // MSL [mm]
 			memcpy(&heightMSL, &pyld[36], sizeof(heightMSL));
 			UINT32 horizontalAccuracy; // [mm]
@@ -260,6 +262,7 @@ void UBloxGPS::ParseMessage()
 			NumSV = numSV;
 			Longitude = longitude;
 			Latitude = latitude;
+			HeightEllipsoid = heightEllipsoid;
 			HeightMSL = heightMSL;
 			HorizontalAccuracy = horizontalAccuracy;
 			VerticalAccuracy = verticalAccuracy;
@@ -268,6 +271,89 @@ void UBloxGPS::ParseMessage()
 			VelD = velD;
 			SpeedAcc = sAcc;
 		}
+
+		if( m_ID == 0x14)
+		{
+		    // NAV-HPPOSLLH
+		    UINT32 iTOWHP; // GPS time of week [ms]
+		    memcpy(&iTOWHP, &pyld[4], sizeof(iTOWHP));
+            INT32 longitude; // 1e-7 [deg]
+            memcpy(&longitude, &pyld[8], sizeof(longitude));
+            INT32 latitude; // 1e-7 [deg]
+            memcpy(&latitude, &pyld[12], sizeof(latitude));
+            INT32 heightEllipsoid; // WGS84 ellipsoid [mm]
+            memcpy(&heightEllipsoid, &pyld[16], sizeof(heightEllipsoid));
+            INT32 heightMSL; // MSL [mm]
+            memcpy(&heightMSL, &pyld[20], sizeof(heightMSL));
+
+            BYTE longitudeHP; // 1e-9 [deg], [-99.+99]
+            longitudeHP = pyld[24];
+            BYTE latitudeHP; // 1e-9 [deg], [-99.+99]
+            latitudeHP = pyld[25];
+
+            BYTE heightEllipsoidHP;
+            heightEllipsoidHP = pyld[26];
+            BYTE heightMSLHP;
+            heightMSLHP = pyld[27];
+
+            UINT32 horizontalAccuracy; // [0.1 mm]
+            memcpy(&horizontalAccuracy, &pyld[28], sizeof(horizontalAccuracy));
+            UINT32 verticalAccuracy; // [0.1 mm]
+            memcpy(&verticalAccuracy, &pyld[32], sizeof(verticalAccuracy));
+
+		    GPSTimeHP = iTOWHP;
+            LongitudeHP = longitude;
+            LatitudeHP = latitude;
+            HeightEllipsoidHP = heightEllipsoid;
+            HeightMSLHP = heightMSL;
+
+            LongitudeHPP = longitudeHP;
+            LatitudeHPP = latitudeHP;
+            HeightEllipsoidHPP = heightEllipsoidHP;
+            HeightMSLHPP = heightMSLHP;
+            HorizontalAccuracyHP = horizontalAccuracy;
+            VerticalAccuracyHP = verticalAccuracy;
+		}
+
+		if (m_ID == 0x3C)
+        {
+            //NAV-RELPOSNED
+            UINT32 iTOWRelPos; // GPS time of week [ms]
+            memcpy(&iTOWRelPos, &pyld[4], sizeof(iTOWRelPos));
+
+
+            INT32 relPosN; // Rel Pos North [cm]
+            memcpy(&relPosN, &pyld[8], sizeof(relPosN));
+            INT32 relPosE; // Rel Pos East [cm]
+            memcpy(&relPosE, &pyld[12], sizeof(relPosE));
+            INT32 relPosD; // Rel Pos Down [cm]
+            memcpy(&relPosD, &pyld[16], sizeof(relPosD));
+
+            BYTE relPosHPN; // Rel Pos North [0.1mm]
+            relPosHPN = pyld[32];
+            BYTE relPosHPE; // Rel Pos East [0.1mm]
+            relPosHPE = pyld[33];
+            BYTE relPosHPD; // Rel Pos Down [0.1mm]
+            relPosHPD = pyld[34];
+
+            UINT32 relPosAccN; // Pos accuracy [0.1mm]
+            memcpy(&relPosAccN, &pyld[36], sizeof(relPosAccN));
+            UINT32 relPosAccE; // Pos accuracy [0.1mm]
+            memcpy(&relPosAccE, &pyld[40], sizeof(relPosAccE));
+            UINT32 relPosAccD; // Pos accuracy [0.1mm]
+            memcpy(&relPosAccD, &pyld[44], sizeof(relPosAccD));
+
+            GPSTimeRelPos = iTOWRelPos;
+            RelPosN = relPosN;
+            RelPosE = relPosE;
+            RelPosD = relPosD;
+            RelPosHPN = relPosHPN;
+            RelPosHPE = relPosHPE;
+            RelPosHPD = relPosHPD;
+            RelAccN = relPosAccN;
+            RelAccE = relPosAccE;
+            RelAccD = relPosAccD;
+        }
 
 		if (m_ID == 0x35)
 		{
@@ -295,3 +381,4 @@ void UBloxGPS::ParseMessage()
 		break;
 	}
 }
+

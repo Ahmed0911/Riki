@@ -24,20 +24,49 @@ public:
 	int MsgTotal;
 	int MsgParsed;
 
+	// NAV-PVT
 	UINT32 GPSTime; // GPS time of week [ms]
 	BYTE FixType; // GNSSfix Type
-	BYTE FixFlags; // FIX Flags
+	BYTE FixFlags; // FIX Flags, TODO: Check "carrSoln"
 	BYTE NumSV; // number of active satellites
 	INT32 Longitude; // 1e-7 [deg]
 	INT32 Latitude; // 1e-7 [deg]
+	INT32 HeightEllipsoid; // WGS84 Ellipsoid [mm]
 	INT32 HeightMSL; // MSL [mm]
 	UINT32 HorizontalAccuracy; // [mm]
 	UINT32 VerticalAccuracy; // [mm]
 	INT32 VelN; // Speed North [mm/s]
 	INT32 VelE; // Speed East [mm/s]
 	INT32 VelD; // Speed Down [mm/s]
-	UINT32 SpeedAcc; // Speec accuracy [mm/s]
-	BYTE SatCNOs[32]; // 32 sattelites cno [dB]
+	UINT32 SpeedAcc; // Speed accuracy [mm/s]
+
+	// NAV-HPPOSLLH
+	UINT32 GPSTimeHP; // GPS time of week [ms]
+	INT32 LongitudeHP; // 1e-7 [deg]
+    INT32 LatitudeHP; // 1e-7 [deg]
+    INT32 HeightEllipsoidHP; // WGS84 Ellipsoid [mm]
+    INT32 HeightMSLHP; // MSL [mm]
+    BYTE LongitudeHPP; // [-99..+99]
+    BYTE LatitudeHPP; // [-99..+99]
+    BYTE HeightEllipsoidHPP;
+    BYTE HeightMSLHPP;
+    UINT32 HorizontalAccuracyHP; // [0.1 mm]
+    UINT32 VerticalAccuracyHP; // [0.1 mm]
+
+	// NAV-RELPOSNED
+	UINT32 GPSTimeRelPos; // GPS time of week [ms]
+	INT32 RelPosN; // cm
+	INT32 RelPosE; // cm
+	INT32 RelPosD; // cm
+	BYTE RelPosHPN; // 0.1 mm (-99...+99)
+	BYTE RelPosHPE; // 0.1 mm (-99...+99)
+	BYTE RelPosHPD; // 0.1 mm (-99...+99)
+	UINT32 RelAccN;
+	UINT32 RelAccE;
+	UINT32 RelAccD;
+
+	// NAV-SAT
+	BYTE SatCNOs[32]; // 32 Satellites cno [dB]
 
 private:
 	struct CHKSUM

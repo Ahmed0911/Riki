@@ -39,7 +39,7 @@ struct SCommEthData
 	float FuelLevel; // [0...100%]
 	float BatteryVoltage; // [V]
 
-	// GPS
+	// GPS1
 	unsigned int GPSTime;
 	unsigned char NumSV;
 	unsigned char FixType;
@@ -54,6 +54,49 @@ struct SCommEthData
 	int VelE; // Speed East [mm/s]
 	int VelD; // Speed Down [mm/s]
 	unsigned int SpeedAcc; // Speed accuracy [mm/s]
+
+	// GPS2
+    unsigned int GPSTime2;
+    unsigned char NumSV2;
+    unsigned char FixType2;
+    unsigned char FixFlags2; // FIX Flags
+    unsigned char ActualMode2; // Non GPS, but used for 32bit alignment
+    int Longitude2; // 1e-7 [deg]
+    int Latitude2; // 1e-7 [deg]
+    int HeightMSL2; // MSL [mm]
+    unsigned int HorizontalAccuracy2; // [mm]
+    unsigned int VerticalAccuracy2; // [mm]
+    int VelN2; // Speed North [mm/s]
+    int VelE2; // Speed East [mm/s]
+    int VelD2; // Speed Down [mm/s]
+    unsigned int SpeedAcc2; // Speed accuracy [mm/s]
+
+    // NAV-HPPOSLLH
+	unsigned int GPSTimeHP; // GPS time of week [ms]
+	int LongitudeHP; // 1e-7 [deg]
+	int LatitudeHP; // 1e-7 [deg]
+	int HeightEllipsoidHP; // WGS84 Ellipsoid [mm]
+	int HeightMSLHP; // MSL [mm]
+	signed char LongitudeHPP; // [-99..+99]
+	signed char LatitudeHPP; // [-99..+99]
+	signed char HeightEllipsoidHPP;
+	signed char HeightMSLHPP;
+	unsigned int HorizontalAccuracyHP; // [0.1 mm]
+	unsigned int VerticalAccuracyHP; // [0.1 mm]
+
+    // NAV-RELPOSNED
+	unsigned int GPSTimeRelPos; // GPS time of week [ms]
+	int RelPosN; // cm
+	int RelPosE; // cm
+	int RelPosD; // cm
+	signed char RelPosHPN; // 0.1 mm (-99...+99)
+    signed char RelPosHPE; // 0.1 mm (-99...+99)
+    signed char RelPosHPD; // 0.1 mm (-99...+99)
+    signed char dummyAli;
+    unsigned int RelAccN;
+    unsigned int RelAccE;
+    unsigned int RelAccD;
+
 
 	// Comm Eth
 	unsigned int EthSentCount;

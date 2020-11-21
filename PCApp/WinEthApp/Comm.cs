@@ -38,7 +38,7 @@ namespace WinEthApp
         public float FuelLevel; // [0...100%]
         public float BatteryVoltage; // [V]
 
-        // GPS
+        // GPS1
         public uint GPSTime;
         public byte NumSV;
         public byte FixType;
@@ -53,6 +53,49 @@ namespace WinEthApp
         public int VelE; // Speed East [mm/s]
         public int VelD; // Speed Down [mm/s]
         public uint SpeedAcc; // Speed accuracy [mm/s]
+
+        // GPS2
+        public int GPSTime2;
+        public byte NumSV2;
+        public byte FixType2;
+        public byte FixFlags2; // FIX Flags
+        public byte ActualMode2; // Non GPS, but used for 32bit alignment
+        public int Longitude2; // 1e-7 [deg]
+        public int Latitude2; // 1e-7 [deg]
+        public int HeightMSL2; // MSL [mm]
+        public uint HorizontalAccuracy2; // [mm]
+        public uint VerticalAccuracy2; // [mm]
+        public int VelN2; // Speed North [mm/s]
+        public int VelE2; // Speed East [mm/s]
+        public int VelD2; // Speed Down [mm/s]
+        public uint SpeedAcc2; // Speed accuracy [mm/s]
+
+        // NAV-HPPOSLLH
+        public uint GPSTimeHP; // GPS time of week [ms]
+        public int LongitudeHP; // 1e-7 [deg]
+        public int LatitudeHP; // 1e-7 [deg]
+        public int HeightEllipsoidHP; // WGS84 Ellipsoid [mm]
+        public int HeightMSLHP; // MSL [mm]
+        public sbyte LongitudeHPP; // [-99..+99]
+        public sbyte LatitudeHPP; // [-99..+99]
+        public sbyte HeightEllipsoidHPP;
+        public sbyte HeightMSLHPP;
+        public uint HorizontalAccuracyHP; // [0.1 mm]
+        public uint VerticalAccuracyHP; // [0.1 mm]
+
+        // NAV-RELPOSNED
+        public uint GPSTimeRelPos; // GPS time of week [ms]
+        public int RelPosN; // cm
+        public int RelPosE; // cm
+        public int RelPosD; // cm
+        public sbyte RelPosHPN; // 0.1 mm (-99...+99)
+        public sbyte RelPosHPE; // 0.1 mm (-99...+99)
+        public sbyte RelPosHPD; // 0.1 mm (-99...+99)
+        public byte dummyAli;
+        public uint RelAccN;
+        public uint RelAccE;
+        public uint RelAccD;
+
 
         // Comm Eth
         public uint EthSentCount;

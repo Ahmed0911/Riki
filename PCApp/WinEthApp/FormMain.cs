@@ -186,6 +186,28 @@ namespace WinEthApp
             textBoxSatCNOs1.Text = cnos1;
             textBoxSatCNOs2.Text = cnos2;
 
+            // GPS2
+            textBoxLocTime2.Text = MainSystemData.GPSTime2.ToString();
+            textBoxLocSatNr2.Text = MainSystemData.NumSV2.ToString();
+            textBoxLocLat2.Text = (MainSystemData.LatitudeHP * 1e-7 + MainSystemData.LatitudeHPP * 1e-9).ToString("0.000000000");
+            textBoxLocLon2.Text = (MainSystemData.LongitudeHP * 1e-7 + MainSystemData.LongitudeHPP * 1e-9).ToString("0.000000000");
+
+            textBoxRelaN.Text = (MainSystemData.RelPosN + MainSystemData.RelPosHPN / 100.0).ToString("0.00 cm");
+            textBoxRelaE.Text = (MainSystemData.RelPosE + MainSystemData.RelPosHPE / 100.0).ToString("0.00 cm");
+            textBoxRelaD.Text = (MainSystemData.RelPosD + MainSystemData.RelPosHPD / 100.0).ToString("0.00 cm");
+
+            textBoxLocVelocityN2.Text = (MainSystemData.VelN2 / 1000.0).ToString("0.00 m/s");
+            textBoxLocVelocityE2.Text = (MainSystemData.VelE2 / 1000.0).ToString("0.00 m/s");
+            textBoxLocVelocityD2.Text = (MainSystemData.VelD2 / 1000.0).ToString("0.00 m/s");
+
+            textBoxLocRelAccN.Text = (MainSystemData.RelAccN / 10.0).ToString("0.0 mm");
+            textBoxLocRelAccE.Text = (MainSystemData.RelAccE / 10.0).ToString("0.0 mm");
+            textBoxLocRelAccD.Text = (MainSystemData.RelAccD / 10.0).ToString("0.0 mm");
+
+            textBoxLocHeight2.Text = ((MainSystemData.HeightEllipsoidHP + MainSystemData.HeightEllipsoidHPP/10.0)/1000.0).ToString("0.000 m");
+            //textBoxLocHeight2.Text = ((MainSystemData.HeightEllipsoidHPP / 10.0)).ToString("0.00 mm");
+
+
             // Attitude
             textBoxRoll.Text = MainSystemData.Roll.ToString("0.0 °");
             textBoxPitch.Text = MainSystemData.Pitch.ToString("0.0 °");

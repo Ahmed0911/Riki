@@ -373,7 +373,7 @@ void SendPeriodicDataEth(void)
 	data.MotorThrusts[3] = (unsigned char)(100*(ctrl.Ctrl_Y.PWM4-1000)/900);
 
 	// gps
-	data.GPSTime = gps2.GPSTime;
+	data.GPSTime = gps.GPSTime;
 	data.FixType = gps.FixType;
 	data.FixFlags = gps.FixFlags;
 	data.NumSV = gps.NumSV;
@@ -387,6 +387,48 @@ void SendPeriodicDataEth(void)
 	data.VelD = gps.VelD;
 	data.SpeedAcc = gps.SpeedAcc;
 	memcpy(data.SatCNOs, gps.SatCNOs, sizeof(data.SatCNOs));
+
+	// GPS2 - F9
+	data.GPSTime2 = gps2.GPSTime;
+	data.NumSV2 = gps2.NumSV;
+	data.FixType2 = gps2.FixType;
+	data.FixFlags2= gps2.FixFlags;
+	data.Longitude2 = gps2.Longitude;
+	data.Latitude2 = gps2.Latitude;
+	data.HeightMSL2 = gps2.HeightMSL;
+	data.HorizontalAccuracy2 = gps2.HorizontalAccuracy;
+	data.VerticalAccuracy2 = gps2.VerticalAccuracy;
+	data.VelN2 = gps2.VelN;
+	data.VelE2 = gps2.VelE;
+	data.VelD2 = gps2.VelD;
+	data.SpeedAcc2 = gps2.SpeedAcc;
+
+    // NAV-HPPOSLLH
+	data.GPSTimeHP = gps2.GPSTimeHP;
+	data.LongitudeHP = gps2.LongitudeHP;
+	data.LatitudeHP = gps2.LatitudeHP;
+	data.HeightEllipsoidHP = gps2.HeightEllipsoidHP;
+	data.HeightMSLHP = gps2.HeightMSLHP;
+	data.LongitudeHPP = gps2.LongitudeHPP;
+	data.LatitudeHPP = gps2.LatitudeHPP;
+	data.HeightEllipsoidHPP = gps2.HeightEllipsoidHPP;
+	data.HeightMSLHPP = gps2.HeightMSLHPP;
+	data.HorizontalAccuracyHP = gps2.HorizontalAccuracyHP;
+	data.VerticalAccuracyHP = gps2.VerticalAccuracyHP;
+
+    // NAV-RELPOSNED
+	data.GPSTimeRelPos = gps2.GPSTimeRelPos;
+	data.RelPosN = gps2.RelPosN;
+	data.RelPosE = gps2.RelPosE;
+	data.RelPosD = gps2.RelPosD;
+	data.RelPosHPN = gps2.RelPosHPN;
+	data.RelPosHPE = gps2.RelPosHPE;
+	data.RelPosHPD = gps2.RelPosHPD;
+	data.RelAccN = gps2.RelAccN;
+	data.RelAccE = gps2.RelAccE;
+	data.RelAccD = gps2.RelAccD;
+
+
 
 	// RF Data + Perf
 	data.EthReceivedCount = etherDrv.ReceivedFrames;
