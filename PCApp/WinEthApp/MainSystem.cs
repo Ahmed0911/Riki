@@ -37,6 +37,7 @@ namespace WinEthApp
             formMain = form;
 
             // parse data
+            //ExtractLogFile(@"D:\RikiLogs\LogWifi-13-14-48.bin");
             //ExtractLogFile(@"C:\Users\Ivan\Desktop\DTW\Projects\Riki\PCApp\WinEthApp\bin\Debug\Log\LogWifi-9-2-43.bin");
             //ExtractLogFileRF(@"C:\Users\Ivan\Desktop\Riki-Gradiliste 29.5.2016\LogHopeRF-11-36-46.bin");
 
@@ -196,11 +197,13 @@ namespace WinEthApp
             sw.Write("Pressure Temperature Altitude Vertspeed ");
             sw.Write("PWM1 PWM2 PWM3 PWM4 ");
             sw.Write("NumSV VelN VelE VelD HeightMSL HorizontalAccuracy ");
-            for (int i = 0; i != 10; i++)
-            {
-                sw.Write("D{0} ", i);
-            }
-            sw.WriteLine("Mode HopeRXRSSI HopeRXFrameCnt HopeRSSI ");
+            sw.Write("Mode ");
+            // GPS2 Data
+            sw.Write("GPSTime2 NumSV2 FixType2 FixFlags2 Longitude2 Latitude2 HeightMSL2 HorizontalAccuracy2 VerticalAccuracy2 VelN2 VelE2 VelD2 SpeedAcc2 ");
+            // HPPOSLLH
+            sw.Write("GPSTimeHP LongitudeHP LatitudeHP HeightEllipsoidHP HeightMSLHP LongitudeHPP LatitudeHPP HeightEllipsoidHPP HeightMSLHPP HorizontalAccuracyHP VerticalAccuracyHP ");
+            // RELPOSNED
+            sw.Write("GPSTimeRelPos RelPosN RelPosE RelPosD RelPosHPN RelPosHPE RelPosHPD RelAccN RelAccE RelAccD ");
             sw.WriteLine("");
 
             SCommEthData data = new SCommEthData();
@@ -219,11 +222,10 @@ namespace WinEthApp
                 sw.Write("{0} {1} {2} {3} ", data.Pressure, data.Temperature, data.Altitude, data.Vertspeed);
                 sw.Write("{0} {1} {2} {3} ", data.MotorThrusts[0], data.MotorThrusts[1], data.MotorThrusts[2], data.MotorThrusts[3]);
                 sw.Write("{0} {1} {2} {3} {4} {5} ", data.NumSV, data.VelN / 1000.0, data.VelE / 1000.0, data.VelD / 1000.0, data.HeightMSL / 1000.0, data.HorizontalAccuracy / 1000.0);
-                for (int i = 0; i != 10; i++ )
-                {
-                    sw.Write("{0} ", data.TuningData[i]);
-                }
-                sw.Write("{0} {1} {2} {3} ", data.ActualMode, data.HopeRXRSSI, data.HopeRXFrameCount, data.HopeRSSI);
+                sw.Write("{0} ", data.ActualMode);
+                sw.Write("{0} {1} {2} {3} {4} {5} {6} {7} {8} {9} {10} {11} {12} ", data.GPSTime2, data.NumSV2, data.FixType2, data.FixFlags2, data.Longitude2, data.Latitude2, data.HeightMSL2, data.HorizontalAccuracy2, data.VerticalAccuracy2, data.VelN2, data.VelE2, data.VelD2, data.SpeedAcc2);
+                sw.Write("{0} {1} {2} {3} {4} {5} {6} {7} {8} {9} {10} ", data.GPSTimeHP, data.LongitudeHP, data.LatitudeHP, data.HeightEllipsoidHP, data.HeightMSLHP, data.LongitudeHPP, data.LatitudeHPP, data.HeightEllipsoidHPP, data.HeightMSLHPP, data.HorizontalAccuracyHP, data.VerticalAccuracyHP);
+                sw.Write("{0} {1} {2} {3} {4} {5} {6} {7} {8} {9} ", data.GPSTimeRelPos, data.RelPosN, data.RelPosE, data.RelPosD, data.RelPosHPN, data.RelPosHPE, data.RelPosHPD, data.RelAccN, data.RelAccE, data.RelAccD);
                 sw.WriteLine("");
             }
 
