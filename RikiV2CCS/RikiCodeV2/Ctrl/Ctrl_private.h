@@ -3,9 +3,9 @@
 //
 // Code generated for Simulink model 'Ctrl'.
 //
-// Model version                  : 1.618
-// Simulink Coder version         : 8.9 (R2015b) 13-Aug-2015
-// C/C++ source code generated on : Sat May 28 17:08:13 2016
+// Model version                  : 2.28
+// Simulink Coder version         : 9.4 (R2020b) 29-Jul-2020
+// C/C++ source code generated on : Sun Nov 29 15:57:45 2020
 //
 // Target selection: ert.tlc
 // Embedded hardware selection: Texas Instruments->TMS470
@@ -15,9 +15,6 @@
 #ifndef RTW_HEADER_Ctrl_private_h_
 #define RTW_HEADER_Ctrl_private_h_
 #include "rtwtypes.h"
-
-extern void Ctrl_CorrectYaw1(real32_T rtu_u, B_CorrectYaw1_Ctrl_T *localB);
-
 #endif                                 // RTW_HEADER_Ctrl_private_h_
 
 //

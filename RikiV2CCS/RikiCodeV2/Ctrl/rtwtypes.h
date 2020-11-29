@@ -3,9 +3,9 @@
 //
 // Code generated for Simulink model 'Ctrl'.
 //
-// Model version                  : 1.618
-// Simulink Coder version         : 8.9 (R2015b) 13-Aug-2015
-// C/C++ source code generated on : Sat May 28 17:08:13 2016
+// Model version                  : 2.28
+// Simulink Coder version         : 9.4 (R2020b) 29-Jul-2020
+// C/C++ source code generated on : Sun Nov 29 15:57:45 2020
 //
 // Target selection: ert.tlc
 // Embedded hardware selection: Texas Instruments->TMS470
@@ -13,18 +13,18 @@
 // Validation result: Not run
 //
 
-#ifndef __RTWTYPES_H__
-#define __RTWTYPES_H__
+#ifndef RTWTYPES_H
+#define RTWTYPES_H
 
 // Logical type definitions
 #if (!defined(__cplusplus))
-#  ifndef false
-#   define false                       (0U)
-#  endif
+#ifndef false
+#define false                          (0U)
+#endif
 
-#  ifndef true
-#   define true                        (1U)
-#  endif
+#ifndef true
+#define true                           (1U)
+#endif
 #endif
 
 //=======================================================================*
@@ -54,8 +54,8 @@ typedef float real32_T;
 typedef double real64_T;
 
 //===========================================================================*
-//  Generic type definitions: real_T, time_T, boolean_T, int_T, uint_T,       *
-//                            ulong_T, char_T and byte_T.                     *
+//  Generic type definitions: boolean_T, char_T, byte_T, int_T, uint_T,       *
+//                            real_T, time_T, ulong_T.                        *
 // ===========================================================================
 typedef double real_T;
 typedef double time_T;
@@ -147,7 +147,7 @@ typedef struct {
 // Block D-Work pointer type
 typedef void * pointer_T;
 
-#endif                                 // __RTWTYPES_H__
+#endif                                 // RTWTYPES_H
 
 //
 // File trailer for generated code.

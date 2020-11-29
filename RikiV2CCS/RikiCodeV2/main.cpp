@@ -215,25 +215,26 @@ void main(void)
 		// IMU2
 		//lsm90Drv.Update();
 
-		// GPS
+		// GPS - REMOVE!!!
 		rd = serialGPS.Read(CommBuffer, COMMBUFFERSIZE); // read data from GPS
 		gps.NewRXPacket(CommBuffer, rd); // process data
-		// set home position
-		if( gps.NumSV >= 6)
-		{
-			if( !llConv.IsHomeSet() )
-			{
-				double lat = gps.Latitude * 1e-7;
-				double lon = gps.Longitude * 1e-7;
-				llConv.SetHome(lat, lon);
-			}
-		}
-		float XN = 0, XE = 0;
-		if( llConv.IsHomeSet()) llConv.ConvertLLToM(gps.Latitude*1e-7, gps.Longitude*1e-7, XN, XE);
 
 		// GPS2
 		rd = serialGPS2.Read(CommBuffer, COMMBUFFERSIZE); // read data from GPS
         gps2.NewRXPacket(CommBuffer, rd); // process data
+
+        // set home position
+        if( gps2.NumSV >= 6)
+        {
+            if( !llConv.IsHomeSet() )
+            {
+                double lat = gps2.Latitude * 1e-7;
+                double lon = gps2.Longitude * 1e-7;
+                llConv.SetHome(lat, lon);
+            }
+        }
+        float XN = 0, XE = 0;
+        if( llConv.IsHomeSet()) llConv.ConvertLLToM(gps2.Latitude*1e-7, gps2.Longitude*1e-7, XN, XE);
 
 		// Hold Position Mode (automatically set Target on mode 4->5, transition is done through mode 0, see Matlab chart)
 		if( (PreviousActualMode == 0) && (ctrl.Ctrl_Y.ActualMode == 5) )
@@ -281,11 +282,12 @@ void main(void)
 		ctrl.Ctrl_U.Aileron = sbusRecv.Channels[1];
 		ctrl.Ctrl_U.Elevator = sbusRecv.Channels[2];
 		ctrl.Ctrl_U.Rudder = sbusRecv.Channels[3];
-		ctrl.Ctrl_U.FlatVe[0] = gps.VelN / 1000.0f; // [m/s], Northing - X
-		ctrl.Ctrl_U.FlatVe[1] = gps.VelE / 1000.0f; // [m/s], Easting - Y
-		ctrl.Ctrl_U.FlatVe[2] = gps.VelD / 1000.0f; // [m/s], Down - Z, -> ignored, gps alt Z vel is not accurate! Probably?!
+		ctrl.Ctrl_U.FlatVe[0] = gps2.VelN / 1000.0f; // [m/s], Northing - X
+		ctrl.Ctrl_U.FlatVe[1] = gps2.VelE / 1000.0f; // [m/s], Easting - Y
+		ctrl.Ctrl_U.FlatVe[2] = gps2.VelD / 1000.0f; // [m/s], Down - Z, -> ignored, gps alt Z vel is not accurate! Probably?!
 		ctrl.Ctrl_U.FlatXe[0] = XN;
 		ctrl.Ctrl_U.FlatXe[1] = XE;
+		ctrl.Ctrl_U.GPSHeight = gps2.HeightMSL/1000.0f; // GPS height in [m]
 
 		// fill waypoint buffer
 		ctrl.Ctrl_U.Waypoints[0] = TargetAlt;
