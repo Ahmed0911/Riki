@@ -64,7 +64,7 @@ void EtherDriver::Init()
 
 
 	// lwIP Ethernet
-	lwIPInit(g_ui32SysClock, g_pui8MACAddr, inet_addr("110.0.168.192"), inet_addr("0.255.255.255"), inet_addr("1.0.168.192"), IPADDR_USE_STATIC); 	// Set IP
+	lwIPInit(g_ui32SysClock, g_pui8MACAddr, inet_addr("210.0.168.192"), inet_addr("0.255.255.255"), inet_addr("1.0.168.192"), IPADDR_USE_STATIC); 	// Set IP
 	//lwIPInit(g_ui32SysClock, g_pui8MACAddr, 0, 0, 0, IPADDR_USE_DHCP); 	// Set IP
 
 	// Fix LEDs

@@ -143,9 +143,10 @@ void main(void)
 	wpnOut.Init();
 	pwmDrv.Init();
 	pwmDrv.SetWidthUS(0, 1000); // Set zero PWMs
-	pwmDrv.SetWidthUS(1, 1000); // Set zero PWMs
+	pwmDrv.SetWidthUS(1, 1000); // Set zero PWMs - broken
 	pwmDrv.SetWidthUS(2, 1000); // Set zero PWMs
 	pwmDrv.SetWidthUS(3, 1000);	// Set zero PWMs
+	pwmDrv.SetWidthUS(4, 1000); // Set zero PWMs
 	serialU2.Init(UART2_BASE, 9600); // GPS
 	serialU3.Init(UART3_BASE, 100000); // SBUS
 	serialU5.Init(UART5_BASE, 115200); // Ext. Comm, Ext. GPS - F9
@@ -326,9 +327,10 @@ void main(void)
 		// OUTPUTS
 		/////////////////////////////////
 		pwmDrv.SetWidthUS(0, ctrl.Ctrl_Y.PWM1);
-		pwmDrv.SetWidthUS(1, ctrl.Ctrl_Y.PWM2);
+		pwmDrv.SetWidthUS(1, ctrl.Ctrl_Y.PWM2); // broken, replaced with "4"
 		pwmDrv.SetWidthUS(2, ctrl.Ctrl_Y.PWM3);
 		pwmDrv.SetWidthUS(3, ctrl.Ctrl_Y.PWM4);
+		pwmDrv.SetWidthUS(4, ctrl.Ctrl_Y.PWM2);
 
 		// Launch Process
 		launch.Update();

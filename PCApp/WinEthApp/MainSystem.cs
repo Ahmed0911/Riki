@@ -37,7 +37,7 @@ namespace WinEthApp
             formMain = form;
 
             // parse data
-            //ExtractLogFile(@"D:\RikiLogs\LogWifi-13-41-24.bin");
+            //ExtractLogFile(@"D:\RikiLogs\LogWifi-13-36-19.bin");
             //ExtractLogFile(@"C:\Users\Ivan\Desktop\DTW\Projects\Riki\PCApp\WinEthApp\bin\Debug\Log\LogWifi-9-2-43.bin");
             //ExtractLogFileRF(@"C:\Users\Ivan\Desktop\Riki-Gradiliste 29.5.2016\LogHopeRF-11-36-46.bin");
 
