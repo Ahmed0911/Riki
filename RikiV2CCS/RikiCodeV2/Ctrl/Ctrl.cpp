@@ -3,9 +3,9 @@
 //
 // Code generated for Simulink model 'Ctrl'.
 //
-// Model version                  : 2.28
+// Model version                  : 2.29
 // Simulink Coder version         : 9.4 (R2020b) 29-Jul-2020
-// C/C++ source code generated on : Sun Nov 29 15:57:45 2020
+// C/C++ source code generated on : Sun Dec  6 15:33:43 2020
 //
 // Target selection: ert.tlc
 // Embedded hardware selection: Texas Instruments->TMS470
@@ -41,7 +41,7 @@ const real32_T Ctrl_Ts = 0.0025F;
 real32_T AltKp = 0.03F;                // Variable: AltKp
                                           //  Referenced by: '<S108>/Proportional Gain'
 
-real32_T AltRateBias = 0.65F;          // Variable: AltRateBias
+real32_T AltRateBias = 0.59F;          // Variable: AltRateBias
                                           //  Referenced by:
                                           //    '<S13>/Bias1'
                                           //    '<S1052>/Bias1'
