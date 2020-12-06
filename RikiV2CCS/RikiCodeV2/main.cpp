@@ -114,13 +114,13 @@ float TrajZNEVParams[4];
 
 // OFFSETS
 #define GYROOFFX -1.004f
-#define GYROOFFY 1.444f
+#define GYROOFFY 1.344f
 #define GYROOFFZ -0.6995f
-#define MAGOFFX 25.2328f
-#define MAGOFFY 31.8127f
-#define MAGOFFZ 5.1955f
-#define ATTOFFROLL 1.0f
-#define ATTOFFPITCH 1.5f
+#define MAGOFFX -10.8451f
+#define MAGOFFY 15.3744f
+#define MAGOFFZ 155.7038f
+#define ATTOFFROLL 1.5f
+#define ATTOFFPITCH 1.9f
 
 //double g1 = 0;
 //double g2 = 0;
